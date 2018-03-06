@@ -1,0 +1,60 @@
+<script type="text/javascript">
+    RED.nodes.registerType('sampler',{
+        category: 'audio feature extraction',
+        color: '#C7E9C0',
+        defaults: {
+            name: {value:""},
+			file: {value:"", required: true},
+			sampleRate: {value:""},
+			mono: {value:""},
+			offset: {value:""},
+			duration: {value:""},
+			resType: {value:"kaiser_best"}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "inject.png",
+        label: function() {
+            return this.name || "sampler";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="sampler">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+        <input type="text" id="node-input-name" placeholder="name">
+    </div>
+	<div class="form-row">
+        <label for="node-input-file"><i class="icon-tag"></i>File</label>
+        <input type="text" id="node-input-file" placeholder="path">
+    </div>
+	<div class="form-row">
+        <label for="node-input-sampleRate"><i class="icon-tag"></i>Sample rate(hz)</label>
+        <input type="number" id="node-input-sampleRate" placeholder="sample rate in Hz">
+    </div>
+	<div class="form-row">
+        <label for="node-input-mono"><i class="icon-tag"></i>Convert to mono</label>
+        <input type="checkbox" id="node-input-mono">
+    </div>
+	<div class="form-row">
+        <label for="node-input-offset"><i class="icon-tag"></i>Offset(s)</label>
+        <input type="text" id="node-input-offset" placeholder="offset in seconds">
+    </div>
+	<div class="form-row">
+        <label for="node-input-duration"><i class="icon-tag"></i>Duration(s)</label>
+        <input type="text" id="node-input-duration" placeholder="duration in seconds">
+    </div>
+	<div class="form-row">
+        <label for="node-input-resType"><i class="icon-tag"></i>Res type</label>
+		<select id="node-input-resType">
+			<option value="kaiser_best" selected>Kaiser Best</option>
+			<option value="kaiser_fast">Kaiser Fast</option>
+			<option value="scipy">Scipy</option>
+		</select>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="sampler">
+    <p>A node that configures the sampling of an audio file.</p>
+</script>

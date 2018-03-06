@@ -1,0 +1,26 @@
+<script type="text/javascript">
+    RED.nodes.registerType('rmse',{
+        category: 'audio feature extraction',
+        color: '#E2D96E',
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "function.png",
+        label: function() {
+            return this.name||"rmse";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="rmse">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="rmse">
+    <p>A node that configures a rmse.</p>
+</script>

@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('persistance',{
+        category: 'audio feature extraction',
+        color: '#A6BBCF',
+        defaults: {
+            name: {value:""},
+			save: {value:"", required: true}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "db.png",
+        label: function() {
+            return this.name||"persistance";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="persistance">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+        <input type="text" id="node-input-name" placeholder="name">
+    </div>
+	<div class="form-row">
+        <label for="node-input-save"><i class="icon-tag"></i>Save</label>
+        <input type="text" id="node-input-save" placeholder="path">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="persistance">
+    <p>A node that configures the persistance of the features extracted.</p>
+</script>

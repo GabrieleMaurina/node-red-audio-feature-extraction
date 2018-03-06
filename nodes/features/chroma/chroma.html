@@ -1,0 +1,36 @@
+<script type="text/javascript">
+    RED.nodes.registerType('chroma',{
+        category: 'audio feature extraction',
+        color: '#E2D96E',
+        defaults: {
+            name: {value:""},
+			norm: {value:""},
+			tuning: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "function.png",
+        label: function() {
+            return this.name||"chroma";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="chroma">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+	<div class="form-row">
+        <label for="node-input-norm"><i class="icon-tag"></i>Norm</label>
+        <input type="number" id="node-input-norm" placeholder="norm">
+    </div>
+	<div class="form-row">
+        <label for="node-input-tuning "><i class="icon-tag"></i>Tuning </label>
+        <input type="number" id="node-input-tuning " placeholder="tuning ">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="chroma">
+    <p>A node that configures a chroma spectrogram.</p>
+</script>

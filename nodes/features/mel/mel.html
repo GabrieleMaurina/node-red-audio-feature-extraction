@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('mel',{
+        category: 'audio feature extraction',
+        color: '#E2D96E',
+        defaults: {
+            name: {value:""},
+			power: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "function.png",
+        label: function() {
+            return this.name||"mel";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="mel">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+	<div class="form-row">
+        <label for="node-input-power"><i class="icon-tag"></i>Power</label>
+        <input type="number" id="node-input-power" placeholder="power">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="mel">
+    <p>A node that configures a mel spectrogram.</p>
+</script>
