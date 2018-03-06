@@ -5,7 +5,7 @@ import librosa
 import numpy
 
 data = json.load(open(sys.argv[1], 'r'))
-os.remove(sys.argv[1])
+#os.remove(sys.argv[1])
 
 if 'sampler' in data and 'stft' in data and 'persistance' in data:
 	file = data['sampler']['file']

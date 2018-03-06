@@ -3,7 +3,11 @@ const {exec} = require('child_process')
 const fs = require('fs')
 
 const getFileName = (node) => {
-	return __dirname + '\\' + node.id + (node.file++ || 0) + '.json'
+	if(node.file == undefined){
+		node.file = 0
+	}
+	
+	return __dirname + '\\' + node.id + node.file++ + '.json'
 }
 
 const result = (err, node, msg, callback) => {
