@@ -1,0 +1,140 @@
+[
+    {
+        "id": "c510ad3e.97d81",
+        "type": "sampler",
+        "z": "9347515b.7d77a",
+        "name": "",
+        "file": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test\\sample.wav",
+        "sampleRate": "1000",
+        "mono": true,
+        "offset": "2",
+        "duration": "1",
+        "resType": "kaiser_best",
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "83f43b6b.514258"
+            ]
+        ]
+    },
+    {
+        "id": "e57e5869.21b9b8",
+        "type": "stft",
+        "z": "9347515b.7d77a",
+        "name": "",
+        "nFft": "",
+        "hopLength": "23",
+        "windowLength": "23",
+        "x": 570,
+        "y": 180,
+        "wires": [
+            [
+                "bcd64bf2.f05738"
+            ]
+        ]
+    },
+    {
+        "id": "83f43b6b.514258",
+        "type": "chroma",
+        "z": "9347515b.7d77a",
+        "name": "",
+        "norm": "1",
+        "tuning": "",
+        "x": 300,
+        "y": 360,
+        "wires": [
+            [
+                "8fd08213.8c5c4"
+            ]
+        ]
+    },
+    {
+        "id": "8fd08213.8c5c4",
+        "type": "mel",
+        "z": "9347515b.7d77a",
+        "name": "",
+        "power": "1",
+        "x": 460,
+        "y": 360,
+        "wires": [
+            [
+                "e57e5869.21b9b8"
+            ]
+        ]
+    },
+    {
+        "id": "7a6118d5.4d4138",
+        "type": "mfcc",
+        "z": "9347515b.7d77a",
+        "name": "",
+        "x": 550,
+        "y": 540,
+        "wires": [
+            [
+                "da1787f1.e8e3a8"
+            ]
+        ]
+    },
+    {
+        "id": "da1787f1.e8e3a8",
+        "type": "rmse",
+        "z": "9347515b.7d77a",
+        "name": "",
+        "x": 710,
+        "y": 540,
+        "wires": [
+            [
+                "18d279f1.220016"
+            ]
+        ]
+    },
+    {
+        "id": "f12814cb.6528e8",
+        "type": "inject",
+        "z": "9347515b.7d77a",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 480,
+        "wires": [
+            [
+                "c510ad3e.97d81"
+            ]
+        ]
+    },
+    {
+        "id": "bcd64bf2.f05738",
+        "type": "persistance",
+        "z": "9347515b.7d77a",
+        "name": "",
+        "save": "features",
+        "x": 710,
+        "y": 180,
+        "wires": [
+            [
+                "7a6118d5.4d4138"
+            ]
+        ]
+    },
+    {
+        "id": "18d279f1.220016",
+        "type": "debug",
+        "z": "9347515b.7d77a",
+        "name": "Print",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 810,
+        "y": 400,
+        "wires": []
+    }
+]
