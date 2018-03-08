@@ -1,36 +1,36 @@
 <script type="text/javascript">
-    RED.nodes.registerType('chroma',{
+    RED.nodes.registerType('bandwidth',{
         category: 'audio feature extraction',
         color: '#E2D96E',
         defaults: {
           name: {value:""},
           norm: {value:""},
-          tuning: {value:""}
+          power: {value:""}
         },
         inputs:1,
         outputs:1,
         icon: "function.png",
         label: function() {
-            return this.name||"chroma";
+            return this.name||"bandwidth";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="chroma">
+<script type="text/x-red" data-template-name="bandwidth">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i>Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 	<div class="form-row">
         <label for="node-input-norm"><i class="icon-tag"></i>Norm</label>
-        <input type="number" id="node-input-norm" placeholder="norm">
+        <input type="checkbox" id="node-input-norm">
     </div>
 	<div class="form-row">
-        <label for="node-input-tuning "><i class="icon-tag"></i>Tuning </label>
-        <input type="number" id="node-input-tuning " placeholder="tuning ">
+        <label for="node-input-power "><i class="icon-tag"></i>Power</label>
+        <input type="text" id="node-input-power " placeholder="power ">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="chroma">
-    <p>A node that configures a chroma spectrogram.</p>
+<script type="text/x-red" data-help-name="bandwidth">
+    <p>A node that configures a spectral bandwidth.</p>
 </script>

@@ -16,7 +16,13 @@
       "chroma": "nodes\\features\\chroma\\chroma.js",
       "mel": "nodes\\features\\mel\\mel.js",
       "mfcc": "nodes\\features\\mfcc\\mfcc.js",
-      "rmse": "nodes\\features\\rmse\\rmse.js"
+      "rmse": "nodes\\features\\rmse\\rmse.js",
+      "centroid": "nodes\\features\\centroid\\centroid.js",
+      "bandwidth": "nodes\\features\\bandwidth\\bandwidth.js",
+      "contrast": "nodes\\features\\contrast\\contrast.js",
+      "flatness": "nodes\\features\\flatness\\flatness.js",
+      "rolloff": "nodes\\features\\rolloff\\rolloff.js",
+      "poly": "nodes\\features\\poly\\poly.js"
     }
   },
   "dependencies": {

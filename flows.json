@@ -1,8 +1,8 @@
 [
     {
-        "id": "c510ad3e.97d81",
+        "id": "55401139.57813",
         "type": "sampler",
-        "z": "9347515b.7d77a",
+        "z": "12b76b1c.d868f5",
         "name": "",
         "file": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test\\sample.wav",
         "sampleRate": "1000",
@@ -10,89 +10,89 @@
         "offset": "2",
         "duration": "1",
         "resType": "kaiser_best",
-        "x": 200,
-        "y": 240,
+        "x": 280,
+        "y": 60,
         "wires": [
             [
-                "83f43b6b.514258"
+                "39fadce0.36f524"
             ]
         ]
     },
     {
-        "id": "e57e5869.21b9b8",
+        "id": "39fadce0.36f524",
         "type": "stft",
-        "z": "9347515b.7d77a",
+        "z": "12b76b1c.d868f5",
         "name": "",
         "nFft": "",
         "hopLength": "23",
         "windowLength": "23",
+        "x": 430,
+        "y": 60,
+        "wires": [
+            [
+                "f028ac0a.78479"
+            ]
+        ]
+    },
+    {
+        "id": "f028ac0a.78479",
+        "type": "chroma",
+        "z": "12b76b1c.d868f5",
+        "name": "",
+        "norm": "1",
+        "tuning": "",
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "af5a2e05.7fdd1"
+            ]
+        ]
+    },
+    {
+        "id": "af5a2e05.7fdd1",
+        "type": "mel",
+        "z": "12b76b1c.d868f5",
+        "name": "",
+        "power": "1",
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "60b4e939.6498c8"
+            ]
+        ]
+    },
+    {
+        "id": "60b4e939.6498c8",
+        "type": "mfcc",
+        "z": "12b76b1c.d868f5",
+        "name": "",
         "x": 570,
         "y": 180,
         "wires": [
             [
-                "bcd64bf2.f05738"
+                "8c183947.4d9f38"
             ]
         ]
     },
     {
-        "id": "83f43b6b.514258",
-        "type": "chroma",
-        "z": "9347515b.7d77a",
-        "name": "",
-        "norm": "1",
-        "tuning": "",
-        "x": 300,
-        "y": 360,
-        "wires": [
-            [
-                "8fd08213.8c5c4"
-            ]
-        ]
-    },
-    {
-        "id": "8fd08213.8c5c4",
-        "type": "mel",
-        "z": "9347515b.7d77a",
-        "name": "",
-        "power": "1",
-        "x": 460,
-        "y": 360,
-        "wires": [
-            [
-                "e57e5869.21b9b8"
-            ]
-        ]
-    },
-    {
-        "id": "7a6118d5.4d4138",
-        "type": "mfcc",
-        "z": "9347515b.7d77a",
-        "name": "",
-        "x": 550,
-        "y": 540,
-        "wires": [
-            [
-                "da1787f1.e8e3a8"
-            ]
-        ]
-    },
-    {
-        "id": "da1787f1.e8e3a8",
+        "id": "8c183947.4d9f38",
         "type": "rmse",
-        "z": "9347515b.7d77a",
+        "z": "12b76b1c.d868f5",
         "name": "",
-        "x": 710,
-        "y": 540,
+        "x": 210,
+        "y": 300,
         "wires": [
             [
-                "18d279f1.220016"
+                "955251b1.09e99"
             ]
         ]
     },
     {
-        "id": "f12814cb.6528e8",
+        "id": "acd0d0f5.f79f6",
         "type": "inject",
-        "z": "9347515b.7d77a",
+        "z": "12b76b1c.d868f5",
         "name": "",
         "topic": "",
         "payload": "",
@@ -102,31 +102,31 @@
         "once": false,
         "onceDelay": 0.1,
         "x": 120,
-        "y": 480,
+        "y": 60,
         "wires": [
             [
-                "c510ad3e.97d81"
+                "55401139.57813"
             ]
         ]
     },
     {
-        "id": "bcd64bf2.f05738",
+        "id": "3be43c68.ac6434",
         "type": "persistance",
-        "z": "9347515b.7d77a",
+        "z": "12b76b1c.d868f5",
         "name": "",
         "save": "features",
-        "x": 710,
-        "y": 180,
+        "x": 670,
+        "y": 580,
         "wires": [
             [
-                "7a6118d5.4d4138"
+                "24d50f2f.78cfd"
             ]
         ]
     },
     {
-        "id": "18d279f1.220016",
+        "id": "24d50f2f.78cfd",
         "type": "debug",
-        "z": "9347515b.7d77a",
+        "z": "12b76b1c.d868f5",
         "name": "Print",
         "active": true,
         "tosidebar": true,
@@ -134,7 +134,88 @@
         "tostatus": false,
         "complete": "payload",
         "x": 810,
-        "y": 400,
+        "y": 580,
         "wires": []
+    },
+    {
+        "id": "955251b1.09e99",
+        "type": "centroid",
+        "z": "12b76b1c.d868f5",
+        "name": "",
+        "x": 360,
+        "y": 300,
+        "wires": [
+            [
+                "e03aaefb.f9f22"
+            ]
+        ]
+    },
+    {
+        "id": "e03aaefb.f9f22",
+        "type": "bandwidth",
+        "z": "12b76b1c.d868f5",
+        "name": "",
+        "norm": true,
+        "power": "",
+        "x": 530,
+        "y": 300,
+        "wires": [
+            [
+                "1212562e.eb7eaa"
+            ]
+        ]
+    },
+    {
+        "id": "1212562e.eb7eaa",
+        "type": "contrast",
+        "z": "12b76b1c.d868f5",
+        "name": "",
+        "x": 700,
+        "y": 300,
+        "wires": [
+            [
+                "477a304a.8fbd8"
+            ]
+        ]
+    },
+    {
+        "id": "477a304a.8fbd8",
+        "type": "flatness",
+        "z": "12b76b1c.d868f5",
+        "name": "",
+        "x": 300,
+        "y": 420,
+        "wires": [
+            [
+                "4f6e773e.322748"
+            ]
+        ]
+    },
+    {
+        "id": "4f6e773e.322748",
+        "type": "rolloff",
+        "z": "12b76b1c.d868f5",
+        "name": "",
+        "x": 450,
+        "y": 420,
+        "wires": [
+            [
+                "7e6ce08b.0eaca"
+            ]
+        ]
+    },
+    {
+        "id": "7e6ce08b.0eaca",
+        "type": "poly",
+        "z": "12b76b1c.d868f5",
+        "name": "",
+        "order": "",
+        "x": 610,
+        "y": 420,
+        "wires": [
+            [
+                "3be43c68.ac6434"
+            ]
+        ]
     }
 ]

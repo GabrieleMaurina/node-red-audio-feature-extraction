@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('poly',{
+        category: 'audio feature extraction',
+        color: '#E2D96E',
+        defaults: {
+          name: {value:""},
+          order: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "function.png",
+        label: function() {
+            return this.name||"poly";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="poly">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+	<div class="form-row">
+        <label for="node-input-order"><i class="icon-tag"></i>Order</label>
+        <input type="number" id="node-input-order" placeholder="order">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="poly">
+    <p>A node that configures a polynomial to the columns of a spectrogram.</p>
+</script>

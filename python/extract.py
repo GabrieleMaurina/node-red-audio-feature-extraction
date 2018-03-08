@@ -24,6 +24,18 @@ if 'sampler' in data and 'stft' in data and 'persistance' in data:
 		features.append(librosa.feature.melspectrogram(S=stft, **data['mel']).T)
 	if 'rmse' in data:
 		features.append(librosa.feature.rmse(S=stft, **data['rmse']).T)
+	if 'centroid' in data:
+		features.append(librosa.feature.spectral_centroid(S=stft, **data['centroid']).T)
+	if 'bandwidth' in data:
+		features.append(librosa.feature.spectral_bandwidth(S=stft, **data['bandwidth']).T)
+	if 'contrast' in data:
+		features.append(librosa.feature.spectral_contrast(S=stft, **data['contrast']).T)
+	if 'flatness' in data:
+		features.append(librosa.feature.spectral_flatness(S=stft, **data['flatness']).T)
+	if 'rolloff' in data:
+		features.append(librosa.feature.spectral_rolloff(S=stft, **data['rolloff']).T)
+	if 'poly' in data:
+		features.append(librosa.feature.poly_features(S=stft, **data['rolloff']).T)
 
 	features = numpy.hstack(features)
 
