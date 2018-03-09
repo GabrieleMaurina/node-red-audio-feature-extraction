@@ -4,5 +4,6 @@ module.exports = {
 	LOADED : {fill: 'green', shape: 'dot', text: 'loaded'},
 	COMPLETED : {fill: 'green', shape: 'dot', text: 'completed'},
 	DONE : {fill: 'green', shape: 'dot', text: 'done'},
-	ERROR : {fill: 'red', shape: 'dot',text: 'error'}
+	ERROR : {fill: 'red', shape: 'dot',text: 'error'},
+	NONE : {}
 }

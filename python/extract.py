@@ -11,11 +11,14 @@ basePath = ''
 if 'basePath' in data:
 	basePath = data['basePath']['path'] + '\\'
 
-if 'sampler' in data and 'stft' in data and 'persistance' in data:
-	file = basePath + data['sampler']['file']
-	del data['sampler']['file']
+if ('sampler' in data or 'samples' in data) and 'stft' in data and 'persistance' in data:
 
-	y, sr = librosa.load(file, **data['sampler'])
+	if 'sampler' in data:
+		file = basePath + data['sampler']['file']
+		del data['sampler']['file']
+		y, sr = librosa.load(file, **data['sampler'])
+	elif 'samples' in data:
+		y = data['samples']
 
 	stft = abs(librosa.stft(y, **data['stft']))
 
@@ -60,3 +63,8 @@ if 'sampler' in data and 'stft' in data and 'persistance' in data:
 		savePath += str(i) + '.npy'
 
 	numpy.save(savePath, features)
+
+print('Sample size: ' + str(y.shape))
+print('STFT size: ' + str(stft.shape))
+print('Features size: ' + str(features.shape))
+print('Features extracted')

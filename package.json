@@ -11,6 +11,7 @@
   "node-red": {
     "nodes": {
       "sampler": "nodes\\sampler\\sampler.js",
+      "buffer": "nodes\\buffer\\buffer.js",
       "stft": "nodes\\stft\\stft.js",
       "persistance": "nodes\\persistance\\persistance.js",
       "base path": "nodes\\base-path\\base-path.js",

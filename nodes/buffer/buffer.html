@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('buffer',{
+        category: 'audio feature extraction',
+        color: '#C7E9C0',
+        defaults: {
+            name: {value:""},
+      			size: {value:""},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "inject.png",
+        label: function() {
+            return this.name || "buffer";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="buffer">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+        <input type="text" id="node-input-name" placeholder="name">
+    </div>
+	<div class="form-row">
+        <label for="node-input-size"><i class="icon-tag"></i>Size</label>
+        <input type="number" id="node-input-size" placeholder="100">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="buffer">
+    <p>A node that collects samples and sends them in packets.</p>
+</script>

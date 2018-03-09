@@ -6,7 +6,7 @@ const getFileName = (node) => {
 	if(node.file == undefined){
 		node.file = 0
 	}
-	
+
 	return __dirname + '\\' + node.id + node.file++ + '.json'
 }
 
@@ -30,7 +30,7 @@ const python = (node, data, msg) => {
 		result(err, node, msg, () => {
 			exec('python "' + __dirname + '\\..\\python\\extract.py" "' + file + '"', (err, stdout, stderr) => {
 				result(err, node, msg, () => {
-					msg.payload = 'Features extracted.'
+					msg.payload = stdout
 					node.status(status.DONE)
 					node.send(msg)
 				})
@@ -45,13 +45,14 @@ const last = (RED, node) => {
 
 module.exports = {
 	run: (RED, node, config) => {
-	    RED.nodes.createNode(node, config)
+	  RED.nodes.createNode(node, config)
+		node.status(status.NONE)
 
-		node.on('input', function(msg) {
+		node.on('input', (msg) => {
 			if(!msg.config){
 				msg.config = {}
 			}
-			msg.config[node.name] = node.parameters	
+			msg.config[node.name] = node.parameters
 
 			if(last(RED, node)){
 				python(node, msg.config, msg)
