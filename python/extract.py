@@ -5,10 +5,10 @@ import librosa
 import numpy
 
 data = json.load(open(sys.argv[1], 'r'))
-#os.remove(sys.argv[1])
+os.remove(sys.argv[1])
 
 basePath = ''
-if 'basePath' in data and 'path' in data['basePath']:
+if 'basePath' in data:
 	basePath = data['basePath']['path'] + '\\'
 
 if 'sampler' in data and 'stft' in data and 'persistance' in data:
@@ -43,10 +43,20 @@ if 'sampler' in data and 'stft' in data and 'persistance' in data:
 
 	features = numpy.hstack(features)
 
-	try:
-		old_features = numpy.load(basePath + data['persistance']['save'])
-		features = numpy.vstack([old_features, features])
-	except:
-		pass
+	saveConfig = data['persistance']['file']
+	savePath = basePath + data['persistance']['save']
 
-	numpy.save(basePath + data['persistance']['save'], features)
+	if saveConfig == 'append':
+		try:
+			old_features = numpy.load(basePath + data['persistance']['save'] + '.npy')
+			features = numpy.vstack([old_features, features])
+		except:
+			pass
+
+	elif saveConfig == 'generate new':
+		i = 0
+		while os.path.exists(savePath + str(i) + '.npy'):
+		    i += 1
+		savePath += str(i) + '.npy'
+
+	numpy.save(savePath, features)
