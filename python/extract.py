@@ -7,8 +7,12 @@ import numpy
 data = json.load(open(sys.argv[1], 'r'))
 #os.remove(sys.argv[1])
 
+basePath = ''
+if 'basePath' in data and 'path' in data['basePath']:
+	basePath = data['basePath']['path'] + '\\'
+
 if 'sampler' in data and 'stft' in data and 'persistance' in data:
-	file = data['sampler']['file']
+	file = basePath + data['sampler']['file']
 	del data['sampler']['file']
 
 	y, sr = librosa.load(file, **data['sampler'])
@@ -40,9 +44,9 @@ if 'sampler' in data and 'stft' in data and 'persistance' in data:
 	features = numpy.hstack(features)
 
 	try:
-		old_features = numpy.load(data['persistance']['save'])
+		old_features = numpy.load(basePath + data['persistance']['save'])
 		features = numpy.vstack([old_features, features])
 	except:
 		pass
 
-	numpy.save(data['persistance']['save'], features)
+	numpy.save(basePath + data['persistance']['save'], features)

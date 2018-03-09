@@ -13,6 +13,7 @@
       "sampler": "nodes\\sampler\\sampler.js",
       "stft": "nodes\\stft\\stft.js",
       "persistance": "nodes\\persistance\\persistance.js",
+      "base path": "nodes\\base-path\\base-path.js",
       "chroma": "nodes\\features\\chroma\\chroma.js",
       "mel": "nodes\\features\\mel\\mel.js",
       "mfcc": "nodes\\features\\mfcc\\mfcc.js",
