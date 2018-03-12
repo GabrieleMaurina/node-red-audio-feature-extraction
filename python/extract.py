@@ -21,10 +21,12 @@ if ('sampler' in data or 'samples' in data) and 'stft' in data and 'persistance'
 		y = data['samples']
 
 	stft = abs(librosa.stft(y, **data['stft']))
+	chroma = None
 
 	features = []
 	if 'chroma' in data:
-		features.append(librosa.feature.chroma_stft(S=stft, **data['chroma']).T)
+		chroma = librosa.feature.chroma_stft(S=stft, **data['chroma'])
+		features.append(chroma.T)
 	if 'mfcc' in data:
 		features.append(librosa.feature.mfcc(S=stft, **data['mfcc']).T)
 	if 'mel' in data:
@@ -43,6 +45,15 @@ if ('sampler' in data or 'samples' in data) and 'stft' in data and 'persistance'
 		features.append(librosa.feature.spectral_rolloff(S=stft, **data['rolloff']).T)
 	if 'poly' in data:
 		features.append(librosa.feature.poly_features(S=stft, **data['rolloff']).T)
+	if 'zeroCrossingRate' in data:
+		features.append(librosa.feature.zero_crossing_rate(y, **data['zeroCrossingRate']).T)
+	if 'tonnetz' in data:
+		kwargs = {'y': y}
+		if sr:
+			kwargs['sr'] = sr
+		if chroma:
+			kwargs['chroma'] = chroma
+		features.append(librosa.feature.tonnetz(**kwargs, **data['tonnetz']).T)
 
 	features = numpy.hstack(features)
 
@@ -67,4 +78,4 @@ if ('sampler' in data or 'samples' in data) and 'stft' in data and 'persistance'
 print('Sample size: ' + str(y.shape))
 print('STFT size: ' + str(stft.shape))
 print('Features size: ' + str(features.shape))
-print('Features extracted')
+print('Features extracted.')

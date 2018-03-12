@@ -24,7 +24,9 @@
       "contrast": "nodes\\features\\contrast\\contrast.js",
       "flatness": "nodes\\features\\flatness\\flatness.js",
       "rolloff": "nodes\\features\\rolloff\\rolloff.js",
-      "poly": "nodes\\features\\poly\\poly.js"
+      "poly": "nodes\\features\\poly\\poly.js",
+      "tonnetz": "nodes\\features\\tonnetz\\tonnetz.js",
+      "zeroCrossingRate": "nodes\\features\\zero-crossing-rate\\zero-crossing-rate.js"
     }
   },
   "dependencies": {

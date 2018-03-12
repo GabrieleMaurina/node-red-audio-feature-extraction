@@ -44,7 +44,7 @@
         "y": 360,
         "wires": [
             [
-                "24d50f2f.78cfd"
+                "15a528f2.4bdca7"
             ]
         ]
     },
@@ -69,25 +69,11 @@
         ]
     },
     {
-        "id": "24d50f2f.78cfd",
-        "type": "debug",
-        "z": "12b76b1c.d868f5",
-        "name": "Print",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "x": 790,
-        "y": 420,
-        "wires": []
-    },
-    {
         "id": "c05f4cff.97755",
         "type": "persistance",
         "z": "12b76b1c.d868f5",
         "name": "",
-        "save": "features",
+        "save": "mfcc",
         "file": "overwrite",
         "x": 570,
         "y": 300,
@@ -107,7 +93,8 @@
         "y": 240,
         "wires": [
             [
-                "c05f4cff.97755"
+                "c05f4cff.97755",
+                "bc30de44.cb016"
             ]
         ]
     },
@@ -217,6 +204,64 @@
         "wires": [
             [
                 "9af335b9.b4ce98"
+            ]
+        ]
+    },
+    {
+        "id": "15a528f2.4bdca7",
+        "type": "debug",
+        "z": "12b76b1c.d868f5",
+        "name": "Print",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 830,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "bc30de44.cb016",
+        "type": "persistance",
+        "z": "12b76b1c.d868f5",
+        "name": "",
+        "save": "mel+chroma",
+        "file": "overwrite",
+        "x": 450,
+        "y": 60,
+        "wires": [
+            [
+                "7c1e957.c08206c"
+            ]
+        ]
+    },
+    {
+        "id": "7c1e957.c08206c",
+        "type": "mel",
+        "z": "12b76b1c.d868f5",
+        "name": "",
+        "power": "1",
+        "x": 570,
+        "y": 120,
+        "wires": [
+            [
+                "e9a777b6.a7fe48"
+            ]
+        ]
+    },
+    {
+        "id": "e9a777b6.a7fe48",
+        "type": "chroma",
+        "z": "12b76b1c.d868f5",
+        "name": "",
+        "norm": "",
+        "tuning": "",
+        "x": 680,
+        "y": 180,
+        "wires": [
+            [
+                "15a528f2.4bdca7"
             ]
         ]
     },

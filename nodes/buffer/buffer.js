@@ -10,16 +10,20 @@ module.exports = function(RED){
   		node.status(status.NONE)
       node.on('input', (msg) => {
         node.status(status.PROCESSING)
-        node.data = node.data.concat(msg.payload)
-        if(node.data.length >= node.size){
-          if(!msg.config){
-            msg.config = {}
+
+        if(msg.payload instanceof Array){
+          node.data = node.data.concat(msg.payload)
+          if(node.data.length >= node.size){
+            if(!msg.config){
+              msg.config = {}
+            }
+            msg.config.samples = node.data.slice(0, node.size)
+            node.data.splice(0, node.size)
+            node.status(status.DONE)
+            node.send(msg)
           }
-          msg.config.samples = node.data.slice(0, node.size)
-          node.data.splice(0, node.size)
-          node.status(status.DONE)
-          node.send(msg)
         }
+
       })
     }
 
