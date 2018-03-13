@@ -1,42 +1,30 @@
 const status = require('./status.js')
-const {exec} = require('child_process')
-const fs = require('fs')
+const {spawn} = require('child_process')
 
-const getFileName = (node) => {
-	if(node.file == undefined){
-		node.file = 0
-	}
-
-	return __dirname + '\\' + node.id + node.file++ + '.json'
-}
-
-const result = (err, node, msg, callback) => {
-	if(err){
-		msg.payload = err
-		node.status(status.ERROR)
-		node.send(msg)
-	}
-	else{
-		callback()
-	}
-}
-
-const python = (node, data, msg) => {
+const python = (node, data) => {
 	node.status(status.PROCESSING)
 
-	const file = getFileName(node)
+	if (node.proc == null){
+		node.proc = spawn('python', [__dirname + '\\..\\python\\extract.py'], ['pipe', 'pipe','pipe'])
 
-	fs.writeFile(file, JSON.stringify(data), (err) => {
-		result(err, node, msg, () => {
-			exec('python "' + __dirname + '\\..\\python\\extract.py" "' + file + '"', (err, stdout, stderr) => {
-				result(err, node, msg, () => {
-					msg.payload = stdout
-					node.status(status.DONE)
-					node.send(msg)
-				})
-			})
+		node.proc.stdout.on('data', (data) => {
+		  node.status(status.DONE)
+			node.msg.payload = data.toString()
+			node.send(node.msg)
 		})
-	})
+
+		node.proc.stderr.on('data', (data) => {
+			node.status(status.ERROR)
+			node.msg.payload = data.toString()
+			node.send(node.msg)
+		})
+
+		node.proc.on('exit', () => {
+		  node.proc = null
+		})
+	}
+
+	node.proc.stdin.write(JSON.stringify(data) + '\n')
 }
 
 const last = (RED, node) => {
@@ -48,6 +36,8 @@ module.exports = {
 	  RED.nodes.createNode(node, config)
 		node.status(status.NONE)
 
+		node.proc = null
+
 		node.on('input', (msg) => {
 			if(!msg.config){
 				msg.config = {}
@@ -55,11 +45,20 @@ module.exports = {
 			msg.config[node.name] = node.parameters
 
 			if(last(RED, node)){
-				python(node, msg.config, msg)
+				node.msg = msg
+				python(node, msg.config)
 			}
 			else{
 				node.send(msg)
 			}
 		})
+
+		node.on('close', () => {
+			if(node.proc != null){
+				node.proc.kill()
+				node.proc = null
+			}
+			node.status(status.NONE)
+    })
 	}
 }

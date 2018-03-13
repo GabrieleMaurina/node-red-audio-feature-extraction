@@ -5,7 +5,7 @@
         defaults: {
             name: {value:""},
 			      save: {value:"", required: true},
-            file: {value:"append"}
+            file: {value:"overwrite"}
         },
         inputs:1,
         outputs:1,
@@ -28,8 +28,8 @@
   <div class="form-row">
     <label for="node-input-file"><i class="icon-tag"></i>File</label>
 		<select id="node-input-file">
-			<option value="append" selected>append</option>
-			<option value="overwrite">overwrite</option>
+      <option value="overwrite" selected>overwrite</option>
+			<option value="append">append</option>
 			<option value="generate new">generate new</option>
 		</select>
   </div>
