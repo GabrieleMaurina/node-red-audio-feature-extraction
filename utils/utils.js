@@ -1,9 +1,7 @@
 const status = require('./status.js')
 const {spawn} = require('child_process')
 
-const python = (node, data) => {
-	node.status(status.PROCESSING)
-
+const initProc = (node) => {
 	if (node.proc == null){
 		node.proc = spawn('python', [__dirname + '\\..\\python\\extract.py'], ['pipe', 'pipe','pipe'])
 
@@ -23,7 +21,11 @@ const python = (node, data) => {
 		  node.proc = null
 		})
 	}
+}
 
+const python = (node, data) => {
+	node.status(status.PROCESSING)
+	initProc(node)
 	node.proc.stdin.write(JSON.stringify(data) + '\n')
 }
 
@@ -35,8 +37,7 @@ module.exports = {
 	run: (RED, node, config) => {
 	  RED.nodes.createNode(node, config)
 		node.status(status.NONE)
-
-		node.proc = null
+		node.checked = false
 
 		node.on('input', (msg) => {
 			if(!msg.config){
@@ -44,7 +45,16 @@ module.exports = {
 			}
 			msg.config[node.name] = node.parameters
 
-			if(last(RED, node)){
+			if(!node.checked){
+				node.checked = true
+				node.last = last(RED, node)
+				if(node.last){
+					node.proc = null
+					initProc(node)
+				}
+			}
+
+			if(node.last){
 				node.msg = msg
 				python(node, msg.config)
 			}
@@ -53,12 +63,13 @@ module.exports = {
 			}
 		})
 
-		node.on('close', () => {
+		node.on('close', (done) => {
 			if(node.proc != null){
 				node.proc.kill()
 				node.proc = null
 			}
 			node.status(status.NONE)
+			done()
     })
 	}
 }
