@@ -1,8 +1,8 @@
 [
     {
-        "id": "55401139.57813",
+        "id": "af433d62.4fe8b",
         "type": "sampler",
-        "z": "12b76b1c.d868f5",
+        "z": "63747e25.a77bb",
         "name": "",
         "file": "sample.wav",
         "sampleRate": "1000",
@@ -10,48 +10,48 @@
         "offset": "2",
         "duration": "1",
         "resType": "kaiser_best",
-        "x": 220,
-        "y": 120,
+        "x": 240,
+        "y": 160,
         "wires": [
             [
-                "39fadce0.36f524"
+                "80bc2b7d.177a98"
             ]
         ]
     },
     {
-        "id": "39fadce0.36f524",
+        "id": "80bc2b7d.177a98",
         "type": "stft",
-        "z": "12b76b1c.d868f5",
+        "z": "63747e25.a77bb",
         "name": "",
         "nFft": "1000",
         "hopLength": "20",
         "windowLength": "50",
-        "x": 330,
-        "y": 180,
+        "x": 350,
+        "y": 220,
         "wires": [
             [
-                "b9a3ab90.f91228"
+                "6f1e65de.ba7d8c"
             ]
         ]
     },
     {
-        "id": "60b4e939.6498c8",
+        "id": "64e19ae2.fa2004",
         "type": "mfcc",
-        "z": "12b76b1c.d868f5",
+        "z": "63747e25.a77bb",
         "name": "",
         "nMFCC": "15",
-        "x": 690,
-        "y": 360,
+        "x": 710,
+        "y": 400,
         "wires": [
             [
-                "15a528f2.4bdca7"
+                "48444031.a3261"
             ]
         ]
     },
     {
-        "id": "acd0d0f5.f79f6",
+        "id": "1504fe20.876032",
         "type": "inject",
-        "z": "12b76b1c.d868f5",
+        "z": "63747e25.a77bb",
         "name": "Start",
         "topic": "",
         "payload": "",
@@ -60,157 +60,48 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 110,
-        "y": 60,
+        "x": 130,
+        "y": 100,
         "wires": [
             [
-                "55401139.57813"
+                "af433d62.4fe8b"
             ]
         ]
     },
     {
-        "id": "c05f4cff.97755",
+        "id": "4f98e6bf.242318",
         "type": "persistance",
-        "z": "12b76b1c.d868f5",
+        "z": "63747e25.a77bb",
         "name": "",
         "save": "mfcc",
-        "file": "overwrite",
-        "x": 570,
-        "y": 300,
+        "file": "generate new",
+        "x": 590,
+        "y": 340,
         "wires": [
             [
-                "60b4e939.6498c8"
+                "64e19ae2.fa2004"
             ]
         ]
     },
     {
-        "id": "b9a3ab90.f91228",
+        "id": "6f1e65de.ba7d8c",
         "type": "base path",
-        "z": "12b76b1c.d868f5",
+        "z": "63747e25.a77bb",
         "name": "",
         "basePath": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test",
-        "x": 440,
-        "y": 240,
+        "x": 460,
+        "y": 280,
         "wires": [
             [
-                "c05f4cff.97755",
-                "bc30de44.cb016"
+                "4f98e6bf.242318",
+                "35fd203c.7f501"
             ]
         ]
     },
     {
-        "id": "2a939fd.a791f6",
-        "type": "inject",
-        "z": "12b76b1c.d868f5",
-        "name": "Start",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 110,
-        "y": 440,
-        "wires": [
-            [
-                "6d88a8a9.e7b798"
-            ]
-        ]
-    },
-    {
-        "id": "9af335b9.b4ce98",
-        "type": "buffer",
-        "z": "12b76b1c.d868f5",
-        "name": "",
-        "size": "5",
-        "x": 410,
-        "y": 520,
-        "wires": [
-            [
-                "36e5f68e.6865ea"
-            ]
-        ]
-    },
-    {
-        "id": "36e5f68e.6865ea",
+        "id": "48444031.a3261",
         "type": "debug",
-        "z": "12b76b1c.d868f5",
-        "name": "Print",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "config.samples",
-        "x": 550,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "6d88a8a9.e7b798",
-        "type": "function",
-        "z": "12b76b1c.d868f5",
-        "name": "generate",
-        "func": "var count = flow.get('count') || 0\n\nvar samples = []\n\nfor(var i = 0; i < 3; i++){\n    samples.push(count++)\n}\n\nflow.set('count', count)\n\nmsg.payload = samples\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 260,
-        "y": 440,
-        "wires": [
-            [
-                "579a89ad.930968"
-            ]
-        ]
-    },
-    {
-        "id": "fec73850.dbe0b8",
-        "type": "mqtt in",
-        "z": "12b76b1c.d868f5",
-        "name": "",
-        "topic": "maurina-test",
-        "qos": "2",
-        "broker": "74204f07.beb9e",
-        "x": 110,
-        "y": 520,
-        "wires": [
-            [
-                "a0b98283.8a983"
-            ]
-        ]
-    },
-    {
-        "id": "579a89ad.930968",
-        "type": "mqtt out",
-        "z": "12b76b1c.d868f5",
-        "name": "",
-        "topic": "maurina-test",
-        "qos": "",
-        "retain": "",
-        "broker": "74204f07.beb9e",
-        "x": 430,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "a0b98283.8a983",
-        "type": "json",
-        "z": "12b76b1c.d868f5",
-        "name": "",
-        "property": "payload",
-        "action": "obj",
-        "pretty": false,
-        "x": 270,
-        "y": 520,
-        "wires": [
-            [
-                "9af335b9.b4ce98"
-            ]
-        ]
-    },
-    {
-        "id": "15a528f2.4bdca7",
-        "type": "debug",
-        "z": "12b76b1c.d868f5",
+        "z": "63747e25.a77bb",
         "name": "Print",
         "active": true,
         "tosidebar": true,
@@ -218,70 +109,95 @@
         "tostatus": false,
         "complete": "payload",
         "x": 830,
-        "y": 240,
+        "y": 280,
         "wires": []
     },
     {
-        "id": "bc30de44.cb016",
+        "id": "35fd203c.7f501",
         "type": "persistance",
-        "z": "12b76b1c.d868f5",
+        "z": "63747e25.a77bb",
         "name": "",
         "save": "mel+chroma",
         "file": "overwrite",
-        "x": 450,
-        "y": 60,
+        "x": 470,
+        "y": 100,
         "wires": [
             [
-                "7c1e957.c08206c"
+                "36af2484.a934bc"
             ]
         ]
     },
     {
-        "id": "7c1e957.c08206c",
+        "id": "36af2484.a934bc",
         "type": "mel",
-        "z": "12b76b1c.d868f5",
+        "z": "63747e25.a77bb",
         "name": "",
         "power": "1",
-        "x": 570,
-        "y": 120,
+        "x": 590,
+        "y": 160,
         "wires": [
             [
-                "e9a777b6.a7fe48"
+                "b682b96a.b47f48"
             ]
         ]
     },
     {
-        "id": "e9a777b6.a7fe48",
+        "id": "b682b96a.b47f48",
         "type": "chroma",
-        "z": "12b76b1c.d868f5",
+        "z": "63747e25.a77bb",
         "name": "",
         "norm": "",
         "tuning": "",
-        "x": 680,
-        "y": 180,
+        "x": 700,
+        "y": 220,
         "wires": [
             [
-                "15a528f2.4bdca7"
+                "48444031.a3261"
             ]
         ]
     },
     {
-        "id": "74204f07.beb9e",
-        "type": "mqtt-broker",
-        "z": "",
+        "id": "462cd98b.48d6f8",
+        "type": "converter",
+        "z": "63747e25.a77bb",
         "name": "",
-        "broker": "iot.eclipse.org",
-        "port": "1883",
-        "clientid": "",
-        "usetls": false,
-        "compatmode": true,
-        "keepalive": "60",
-        "cleansession": true,
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": ""
+        "origSr": "",
+        "targetSr": "",
+        "resType": "kaiser_best",
+        "x": 240,
+        "y": 280,
+        "wires": [
+            [
+                "80bc2b7d.177a98"
+            ]
+        ]
+    },
+    {
+        "id": "6910192.c0265e8",
+        "type": "serial in",
+        "z": "63747e25.a77bb",
+        "name": "",
+        "serial": "1dcac3df.02db3c",
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "462cd98b.48d6f8"
+            ]
+        ]
+    },
+    {
+        "id": "1dcac3df.02db3c",
+        "type": "serial-port",
+        "z": "63747e25.a77bb",
+        "serialport": "COM3",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "88200",
+        "bin": "bin",
+        "out": "count",
+        "addchar": false
     }
 ]

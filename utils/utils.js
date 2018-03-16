@@ -24,7 +24,6 @@ const initProc = (node) => {
 }
 
 const python = (node, data) => {
-	node.status(status.PROCESSING)
 	initProc(node)
 	node.proc.stdin.write(JSON.stringify(data) + '\n')
 }
@@ -45,6 +44,10 @@ module.exports = {
 			}
 			msg.config[node.name] = node.parameters
 
+			if(node.readMsg){
+				node.readMsg(msg)
+			}
+
 			if(!node.checked){
 				node.checked = true
 				node.last = last(RED, node)
@@ -55,6 +58,7 @@ module.exports = {
 			}
 
 			if(node.last){
+				node.status(status.PROCESSING)
 				node.msg = msg
 				python(node, msg.config)
 			}

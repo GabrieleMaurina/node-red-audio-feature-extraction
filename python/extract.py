@@ -11,14 +11,17 @@ while(True):
 	if 'basePath' in data:
 		basePath = data['basePath']['path'] + '\\'
 
-	if ('sampler' in data or 'samples' in data) and 'stft' in data and 'persistance' in data:
+	if ('sampler' in data or 'converter' in data) and 'stft' in data and 'persistance' in data:
 
 		if 'sampler' in data:
 			file = basePath + data['sampler']['file']
 			del data['sampler']['file']
 			y, sr = librosa.load(file, **data['sampler'])
-		elif 'samples' in data:
-			y = data['samples']
+			print(y.dtype)
+		elif 'converter' in data:
+			data['converter']['y'] = numpy.array(data['converter']['y'], dtype=numpy.float32)
+			y = librosa.resample(**data['converter'])
+			sr = data['converter']['target_sr']
 
 		stft = abs(librosa.stft(y, **data['stft']))
 		chroma = None
