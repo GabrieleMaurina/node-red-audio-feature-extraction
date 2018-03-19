@@ -6,7 +6,7 @@ const initProc = (node) => {
 		node.proc = spawn('python', [__dirname + '\\..\\python\\extract.py'], ['pipe', 'pipe','pipe'])
 
 		node.proc.stdout.on('data', (data) => {
-		  node.status(status.DONE)
+			node.status(status.DONE)
 			node.msg.payload = data.toString()
 			node.send(node.msg)
 		})
@@ -18,7 +18,7 @@ const initProc = (node) => {
 		})
 
 		node.proc.on('exit', () => {
-		  node.proc = null
+			node.proc = null
 		})
 	}
 }
@@ -34,9 +34,18 @@ const last = (RED, node) => {
 
 module.exports = {
 	run: (RED, node, config) => {
-	  RED.nodes.createNode(node, config)
+		RED.nodes.createNode(node, config)
 		node.status(status.NONE)
-		node.checked = false
+		node.last = false
+
+		RED.events.setMaxListeners(100)
+		RED.events.on("nodes-started", ()=>{
+			node.last = last(RED, node)
+			if(node.last){
+				node.proc = null
+				initProc(node)
+			}
+		})
 
 		node.on('input', (msg) => {
 			if(!msg.config){
@@ -46,15 +55,6 @@ module.exports = {
 
 			if(node.readMsg){
 				node.readMsg(msg)
-			}
-
-			if(!node.checked){
-				node.checked = true
-				node.last = last(RED, node)
-				if(node.last){
-					node.proc = null
-					initProc(node)
-				}
 			}
 
 			if(node.last){
@@ -74,6 +74,6 @@ module.exports = {
 			}
 			node.status(status.NONE)
 			done()
-    })
+		})
 	}
 }

@@ -4,6 +4,8 @@ import json
 import librosa
 import numpy
 
+last_y, last_features, last_wav, last_csv = [None] * 4
+
 while(True):
 	y, sr, stft, chroma, features = [None] * 5
 
@@ -17,7 +19,6 @@ while(True):
 		file = basePath + data['sampler']['file']
 		del data['sampler']['file']
 		y, sr = librosa.load(file, **data['sampler'])
-		print(y.dtype)
 	elif 'converter' in data:
 		data['converter']['y'] = numpy.array(data['converter']['y'], dtype=numpy.float32) / 32767
 		if data['converter']['target_sr'] != data['converter']['orig_sr']:
@@ -69,17 +70,24 @@ while(True):
 		savePath = basePath + data['persistance']['save']
 
 		if saveConfig == 'append':
-			try:
-				old_features = numpy.loadtxt(savePath + '.csv', delimiter=',')
-				features = numpy.vstack([old_features, features])
-			except:
-				pass
+			if last_features is None:
+				try:
+					last_features = numpy.loadtxt(savePath + '.csv', delimiter=',')
+				except:
+					pass
+			if last_features is not None:
+				features = numpy.vstack([last_features, features])
+				last_features = features
 
 		elif saveConfig == 'generate new':
-			i = 0
+			if last_csv is None:
+				i = 0
+			else:
+				i = last_csv + 1
 			while os.path.exists(savePath + str(i) + '.csv'):
 			    i += 1
 			savePath += str(i)
+			last_csv = i
 
 		numpy.savetxt(savePath + '.csv', features, delimiter=',')
 
@@ -87,16 +95,23 @@ while(True):
 		save, file = data['wav'].values()
 		save = basePath + save
 		if file == 'append':
-			try:
-				y_old, sr_old = librosa.load(save + '.wav', sr=None)
-				y = numpy.concatenate((y_old, y))
-			except:
-				pass
+			if last_y is None:
+				try:
+					last_y, last_sr = librosa.load(save + '.wav', sr=None)
+				except:
+					pass
+			if last_y is not None:
+				y = numpy.concatenate((last_y, y))
+				last_y = y
 		elif file == 'generate new':
-			i = 0
+			if last_wav is None:
+				i = 0
+			else:
+				i = last_wav + 1
 			while os.path.exists(save + str(i) + '.wav'):
 			    i += 1
 			save += str(i)
+			last_wav = i
 		librosa.output.write_wav(save + '.wav', y, sr)
 
 	res = ''
