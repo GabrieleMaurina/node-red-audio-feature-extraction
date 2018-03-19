@@ -5,26 +5,31 @@ import librosa
 import numpy
 
 while(True):
+	y, sr, stft, chroma, features = [None] * 5
+
 	data = json.loads(input())
 
 	basePath = ''
 	if 'basePath' in data:
 		basePath = data['basePath']['path'] + '\\'
 
-	if ('sampler' in data or 'converter' in data) and 'stft' in data and 'persistance' in data:
-
-		if 'sampler' in data:
-			file = basePath + data['sampler']['file']
-			del data['sampler']['file']
-			y, sr = librosa.load(file, **data['sampler'])
-			print(y.dtype)
-		elif 'converter' in data:
-			data['converter']['y'] = numpy.array(data['converter']['y'], dtype=numpy.float32)
+	if 'sampler' in data:
+		file = basePath + data['sampler']['file']
+		del data['sampler']['file']
+		y, sr = librosa.load(file, **data['sampler'])
+		print(y.dtype)
+	elif 'converter' in data:
+		data['converter']['y'] = numpy.array(data['converter']['y'], dtype=numpy.float32) / 32767
+		if data['converter']['target_sr'] != data['converter']['orig_sr']:
 			y = librosa.resample(**data['converter'])
 			sr = data['converter']['target_sr']
+		else:
+			y = data['converter']['y']
+			sr = data['converter']['orig_sr']
+
+	if  'stft' in data:
 
 		stft = abs(librosa.stft(y, **data['stft']))
-		chroma = None
 
 		features = []
 		if 'chroma' in data:
@@ -78,6 +83,35 @@ while(True):
 
 		numpy.savetxt(savePath + '.csv', features, delimiter=',')
 
-	res = 'Sample size: ' + str(y.shape) + ' STFT size: ' + str(stft.shape) + ' Features size: ' + str(features.shape) + ' Features extracted.'
+	if 'wav' in data:
+		save, file = data['wav'].values()
+		save = basePath + save
+		if file == 'append':
+			try:
+				y_old, sr_old = librosa.load(save + '.wav', sr=None)
+				y = numpy.concatenate((y_old, y))
+			except:
+				pass
+		elif file == 'generate new':
+			i = 0
+			while os.path.exists(save + str(i) + '.wav'):
+			    i += 1
+			save += str(i)
+		librosa.output.write_wav(save + '.wav', y, sr)
+
+	res = ''
+	try:
+		res += 'Sample size: ' + str(y.shape)
+	except:
+		pass
+	try:
+		res += ' STFT size: ' + str(stft.shape)
+	except:
+		pass
+	try:
+		res += ' Features size: ' + str(features.shape)
+	except:
+		pass
+	res += '\nFeatures extracted.'
 
 	print(res)

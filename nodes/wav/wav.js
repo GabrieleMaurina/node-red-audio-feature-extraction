@@ -1,8 +1,8 @@
 module.exports = function(RED){
-    function persistanceNode(config){
+    function wavNode(config){
   		const utils = require('../../utils/utils')
 
-  		this.name = 'persistance'
+  		this.name = 'wav'
   		this.parameters = {
   			save: config.save || undefined,
             file: config.file || undefined
@@ -10,5 +10,5 @@ module.exports = function(RED){
   		utils.run(RED, this, config)
     }
 
-    RED.nodes.registerType("persistance", persistanceNode)
+    RED.nodes.registerType("wav", wavNode)
 }

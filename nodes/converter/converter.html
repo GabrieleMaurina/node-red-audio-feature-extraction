@@ -1,45 +1,45 @@
 <script type="text/javascript">
-    RED.nodes.registerType('converter',{
-        category: 'audio feature extraction',
-        color: '#C7E9C0',
-        defaults: {
-            name: {value:""},
-            origSr: {value:""},
-            targetSr: {value:""},
-            resType: {value:"kaiser_best"}
-        },
-        inputs:1,
-        outputs:1,
-        icon: "inject.png",
-        label: function() {
-            return this.name || "converter";
-        }
-    });
+	RED.nodes.registerType('converter',{
+		category: 'audio feature extraction',
+		color: '#C7E9C0',
+		defaults: {
+			name: {value:""},
+			origSr: {value:""},
+			targetSr: {value:""},
+			resType: {value:"kaiser_best"}
+		},
+		inputs:1,
+		outputs:1,
+		icon: "inject.png",
+		label: function() {
+			return this.name || "converter";
+		}
+	});
 </script>
 
 <script type="text/x-red" data-template-name="converter">
-    <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i>Name</label>
-        <input type="text" id="node-input-name" placeholder="name">
-    </div>
-    <div class="form-row">
-        <label for="node-input-origSr"><i class="icon-tag"></i>Original sample rate</label>
-        <input type="number" id="node-input-origSr" placeholder="44100">
-    </div>
-    <div class="form-row">
-        <label for="node-input-targetSr"><i class="icon-tag"></i>Target sample rate</label>
-        <input type="number" id="node-input-targetSr" placeholder="1000">
-    </div>
-    <div class="form-row">
-        <label for="node-input-resType"><i class="icon-tag"></i>Resample type</label>
-        <select id="node-input-resType">
-            <option value="kaiser_best" selected>Kaiser Best</option>
-            <option value="kaiser_fast">Kaiser Fast</option>
-            <option value="scipy">Scipy</option>
-        </select>
-    </div>
+	<div class="form-row">
+		<label for="node-input-name"><i class="icon-tag"></i>Name</label>
+		<input type="text" id="node-input-name" placeholder="name">
+	</div>
+	<div class="form-row">
+		<label for="node-input-origSr"><i class="icon-tag"></i>Original sample rate</label>
+		<input type="number" id="node-input-origSr" placeholder="44100">
+	</div>
+	<div class="form-row">
+		<label for="node-input-targetSr"><i class="icon-tag"></i>Target sample rate</label>
+		<input type="number" id="node-input-targetSr" placeholder="44100">
+	</div>
+	<div class="form-row">
+		<label for="node-input-resType"><i class="icon-tag"></i>Resample type</label>
+		<select id="node-input-resType">
+			<option value="kaiser_best" selected>Kaiser Best</option>
+			<option value="kaiser_fast">Kaiser Fast</option>
+			<option value="scipy">Scipy</option>
+		</select>
+	</div>
 </script>
 
 <script type="text/x-red" data-help-name="converter">
-    <p>A node that converts a byte buffer to an audio time series.</p>
+	<p>A node that converts a byte buffer to an audio time series.</p>
 </script>

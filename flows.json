@@ -44,7 +44,7 @@
         "y": 400,
         "wires": [
             [
-                "48444031.a3261"
+                "9ada21f5.062e5"
             ]
         ]
     },
@@ -108,7 +108,7 @@
         "console": false,
         "tostatus": false,
         "complete": "payload",
-        "x": 830,
+        "x": 810,
         "y": 280,
         "wires": []
     },
@@ -162,7 +162,7 @@
         "z": "63747e25.a77bb",
         "name": "",
         "origSr": "",
-        "targetSr": "",
+        "targetSr": "22050",
         "resType": "kaiser_best",
         "x": 240,
         "y": 280,
@@ -182,9 +182,113 @@
         "y": 340,
         "wires": [
             [
-                "462cd98b.48d6f8"
+                "7e7d462d.d6eea8",
+                "76229248.66f8cc"
             ]
         ]
+    },
+    {
+        "id": "7e7d462d.d6eea8",
+        "type": "converter",
+        "z": "63747e25.a77bb",
+        "name": "",
+        "origSr": "",
+        "targetSr": "",
+        "resType": "kaiser_best",
+        "x": 240,
+        "y": 400,
+        "wires": [
+            [
+                "6038772.25cf188"
+            ]
+        ]
+    },
+    {
+        "id": "e992b7ba.3d32a8",
+        "type": "wav",
+        "z": "63747e25.a77bb",
+        "name": "",
+        "save": "audio",
+        "file": "append",
+        "x": 470,
+        "y": 520,
+        "wires": [
+            [
+                "af8c2a38.cbf3d8"
+            ]
+        ]
+    },
+    {
+        "id": "6038772.25cf188",
+        "type": "base path",
+        "z": "63747e25.a77bb",
+        "name": "",
+        "basePath": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test",
+        "x": 360,
+        "y": 460,
+        "wires": [
+            [
+                "e992b7ba.3d32a8"
+            ]
+        ]
+    },
+    {
+        "id": "9ada21f5.062e5",
+        "type": "debug",
+        "z": "63747e25.a77bb",
+        "name": "Print",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 810,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "af8c2a38.cbf3d8",
+        "type": "debug",
+        "z": "63747e25.a77bb",
+        "name": "Print",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 570,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "76229248.66f8cc",
+        "type": "function",
+        "z": "63747e25.a77bb",
+        "name": "counter",
+        "func": "context.count = (context.count || 0) + 1\nmsg.payload = context.count\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 520,
+        "wires": [
+            [
+                "b2a108ed.0e5138"
+            ]
+        ]
+    },
+    {
+        "id": "b2a108ed.0e5138",
+        "type": "debug",
+        "z": "63747e25.a77bb",
+        "name": "Print",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 330,
+        "y": 580,
+        "wires": []
     },
     {
         "id": "1dcac3df.02db3c",
@@ -195,7 +299,7 @@
         "databits": "8",
         "parity": "none",
         "stopbits": "1",
-        "newline": "88200",
+        "newline": "441000",
         "bin": "bin",
         "out": "count",
         "addchar": false
