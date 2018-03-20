@@ -2,10 +2,10 @@ module.exports = function(RED){
     function converterNode(config){
         const utils = require('../../utils/utils')
 
-        var int16LE = (buf) => {
+        var convert = (buf) => {
             var arr = []
             for(var i = 0; i < buf.length; i += 2){
-                arr.push(buf.readInt16LE(i))
+                arr.push(buf.readInt16LE(i) / 32767)
             }
             return arr
         }
@@ -17,7 +17,7 @@ module.exports = function(RED){
             res_type: config.resType || 'kaiser_best'
         }
         this.readMsg = (msg) => {
-            msg.config.converter.y = int16LE(msg.payload)
+            msg.config.converter.y = convert(msg.payload)
         }
         utils.run(RED, this, config)
     }

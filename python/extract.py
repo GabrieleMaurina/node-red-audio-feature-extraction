@@ -20,7 +20,7 @@ while(True):
 		del data['sampler']['file']
 		y, sr = librosa.load(file, **data['sampler'])
 	elif 'converter' in data:
-		data['converter']['y'] = numpy.array(data['converter']['y'], dtype=numpy.float32) / 32767
+		data['converter']['y'] = numpy.array(data['converter']['y'], dtype=numpy.float32)
 		if data['converter']['target_sr'] != data['converter']['orig_sr']:
 			y = librosa.resample(**data['converter'])
 			sr = data['converter']['target_sr']
@@ -28,10 +28,12 @@ while(True):
 			y = data['converter']['y']
 			sr = data['converter']['orig_sr']
 
-	if  'stft' in data:
-
+	if 'stft' in data:
 		stft = abs(librosa.stft(y, **data['stft']))
+	elif 'collector' in data:
+		stft = numpy.array(data['collector']['stft'])
 
+	if stft is not None:
 		features = []
 		if 'chroma' in data:
 			chroma = librosa.feature.chroma_stft(S=stft, **data['chroma'])
@@ -114,19 +116,17 @@ while(True):
 			last_wav = i
 		librosa.output.write_wav(save + '.wav', y, sr)
 
-	res = ''
-	try:
-		res += 'Sample size: ' + str(y.shape)
-	except:
-		pass
-	try:
-		res += ' STFT size: ' + str(stft.shape)
-	except:
-		pass
-	try:
-		res += ' Features size: ' + str(features.shape)
-	except:
-		pass
-	res += '\nFeatures extracted.'
+	res = []
+	if y is not None:
+		res.append('Sample size: ' + str(y.shape))
+	if sr is not None:
+		res.append('Sample rate: ' + str(sr))
+	if stft is not None:
+		res.append('STFT size: ' + str(stft.shape))
+	if features is not None:
+		res.append('Features extracted size: ' + str(features.shape))
+	res.append('Completed.')
+
+	res = '\n'.join(res)
 
 	print(res)

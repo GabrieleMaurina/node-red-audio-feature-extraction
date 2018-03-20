@@ -1,0 +1,26 @@
+<script type="text/javascript">
+	RED.nodes.registerType('collector',{
+		category: 'audio feature extraction',
+		color: '#C7E9C0',
+		defaults: {
+			name: {value:""}
+		},
+		inputs:1,
+		outputs:1,
+		icon: "inject.png",
+		label: function() {
+			return this.name || "collector";
+		}
+	});
+</script>
+
+<script type="text/x-red" data-template-name="collector">
+	<div class="form-row">
+		<label for="node-input-name"><i class="icon-tag"></i>Name</label>
+		<input type="text" id="node-input-name" placeholder="name">
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="collector">
+	<p>A node that converts a byte buffer of 16 bit unsigned integers to an STFT.</p>
+</script>

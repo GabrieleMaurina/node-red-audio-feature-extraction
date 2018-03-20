@@ -7,14 +7,22 @@ const initProc = (node) => {
 
 		node.proc.stdout.on('data', (data) => {
 			node.status(status.DONE)
-			node.msg.payload = data.toString()
-			node.send(node.msg)
+			var msg = {}
+			if(node.msg){
+				msg = node.msg
+			}
+			msg.payload = data.toString()
+			node.send(msg)
 		})
 
 		node.proc.stderr.on('data', (data) => {
 			node.status(status.ERROR)
-			node.msg.payload = data.toString()
-			node.send(node.msg)
+			var msg = {}
+			if(node.msg){
+				msg = node.msg
+			}
+			msg.payload = data.toString()
+			node.send(msg)
 		})
 
 		node.proc.on('exit', () => {

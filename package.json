@@ -12,6 +12,7 @@
     "nodes": {
       "sampler": "nodes\\sampler\\sampler.js",
       "converter": "nodes\\converter\\converter.js",
+      "collector": "nodes\\collector\\collector.js",
       "stft": "nodes\\stft\\stft.js",
       "persistance": "nodes\\persistance\\persistance.js",
       "wav": "nodes\\wav\\wav.js",
