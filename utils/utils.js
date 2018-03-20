@@ -6,23 +6,29 @@ const initProc = (node) => {
 		node.proc = spawn('python', [__dirname + '\\..\\python\\extract.py'], ['pipe', 'pipe','pipe'])
 
 		node.proc.stdout.on('data', (data) => {
-			node.status(status.DONE)
-			var msg = {}
-			if(node.msg){
-				msg = node.msg
+			try{
+				node.status(status.DONE)
+				var msg = {}
+				if(node.msg){
+					msg = node.msg
+				}
+				msg.payload = data.toString()
+				node.send(msg)
 			}
-			msg.payload = data.toString()
-			node.send(msg)
+			catch(err){}
 		})
 
 		node.proc.stderr.on('data', (data) => {
-			node.status(status.ERROR)
-			var msg = {}
-			if(node.msg){
-				msg = node.msg
+			try{
+				node.status(status.ERROR)
+				var msg = {}
+				if(node.msg){
+					msg = node.msg
+				}
+				msg.payload = data.toString()
+				node.send(msg)
 			}
-			msg.payload = data.toString()
-			node.send(msg)
+			catch(err){}
 		})
 
 		node.proc.on('exit', () => {
