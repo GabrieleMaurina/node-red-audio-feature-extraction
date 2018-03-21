@@ -32,7 +32,7 @@ while(True):
 	if 'stft' in data:
 		stft = abs(librosa.stft(y, **data['stft']))
 	elif 'collector' in data:
-		stft = numpy.array(data['collector']['stft'])
+		stft = numpy.array(data['collector']['stft']).T
 
 	if stft is not None:
 		features = []

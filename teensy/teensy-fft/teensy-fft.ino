@@ -20,12 +20,11 @@ void setup() {
   myFFT.windowFunction(AudioWindowHanning1024);
 }
 
-int i;
 byte buffer[1024];
 
 void loop(){
   if (myFFT.available()){
     memcpy(buffer, myFFT.output, 1024);
-    Serial.write(buffer, 2048);
+    Serial.write(buffer, 1024);
   }
 }
