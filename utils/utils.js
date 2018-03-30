@@ -52,14 +52,16 @@ module.exports = {
 		node.status(status.NONE)
 		node.last = false
 
-		RED.events.setMaxListeners(100)
-		RED.events.on("nodes-started", ()=>{
+		const checkLast = () => {
 			node.last = last(RED, node)
 			if(node.last){
 				node.proc = null
 				initProc(node)
 			}
-		})
+		}
+
+		RED.events.setMaxListeners(100)
+		RED.events.addListener("nodes-started", checkLast)
 
 		node.on('input', (msg) => {
 			if(!msg.config){
@@ -82,6 +84,7 @@ module.exports = {
 		})
 
 		node.on('close', (done) => {
+			RED.events.removeListener("nodes-started", checkLast)
 			if(node.proc != null){
 				node.proc.kill()
 				node.proc = null

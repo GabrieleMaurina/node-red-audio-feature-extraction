@@ -3,7 +3,8 @@ import os
 import json
 import librosa
 import numpy
-from datetime  import datetime
+import json
+from datetime import datetime
 
 last_y, last_features, last_wav, last_csv = [None] * 4
 
@@ -129,49 +130,58 @@ while(True):
 			last_wav = i
 		librosa.output.write_wav(wavPath + '.wav', y, sr)
 
-	res = []
-	res.append(str(datetime.now()))
-	if y is not None:
-		res.append('samples: ' + str(y.shape))
-	if sr is not None:
-		res.append('sample rate: ' + str(sr))
-	if stft is not None:
-		res.append('stft: ' + str(stft.shape))
-	if features is not None:
-		res.append('features: ' + str(features.shape))
-	if chroma is not None:
-		res.append('chroma: ' + str(chroma.shape))
-	if mfcc is not None:
-		res.append('mfcc: ' + str(mfcc.shape))
-	if mel is not None:
-		res.append('mel: ' + str(mel.shape))
-	if rmse is not None:
-		res.append('rmse: ' + str(rmse.shape))
-	if centroid is not None:
-		res.append('centroid: ' + str(centroid.shape))
-	if bandwidth is not None:
-		res.append('bandwidth: ' + str(bandwidth.shape))
-	if contrast is not None:
-		res.append('contrast: ' + str(contrast.shape))
-	if flatness is not None:
-		res.append('flatness: ' + str(flatness.shape))
-	if rolloff is not None:
-		res.append('rolloff: ' + str(rolloff.shape))
-	if poly is not None:
-		res.append('poly: ' + str(poly.shape))
-	if zeroCrossingRate is not None:
-		res.append('zeroCrossingRate: ' + str(zeroCrossingRate.shape))
-	if tonnetz is not None:
-		res.append('tonnetz: ' + str(tonnetz.shape))
-	if csvConfig is not None:
-		res.append('csvConfig: ' + csvConfig)
-	if csvPath is not None:
-		res.append('csvPath: ' + csvPath)
-	if wavConfig is not None:
-		res.append('wavConfig: ' + wavConfig)
-	if wavPath is not None:
-		res.append('wavPath: ' + wavPath)
+	if 'persistance' in data or 'wav' in data:
+		res = []
+		res.append(str(datetime.now()))
+		if y is not None:
+			res.append('samples: ' + str(y.shape))
+		if sr is not None:
+			res.append('sample rate: ' + str(sr))
+		if stft is not None:
+			res.append('stft: ' + str(stft.shape))
+		if features is not None:
+			res.append('features: ' + str(features.shape))
+		if chroma is not None:
+			res.append('chroma: ' + str(chroma.shape))
+		if mfcc is not None:
+			res.append('mfcc: ' + str(mfcc.shape))
+		if mel is not None:
+			res.append('mel: ' + str(mel.shape))
+		if rmse is not None:
+			res.append('rmse: ' + str(rmse.shape))
+		if centroid is not None:
+			res.append('centroid: ' + str(centroid.shape))
+		if bandwidth is not None:
+			res.append('bandwidth: ' + str(bandwidth.shape))
+		if contrast is not None:
+			res.append('contrast: ' + str(contrast.shape))
+		if flatness is not None:
+			res.append('flatness: ' + str(flatness.shape))
+		if rolloff is not None:
+			res.append('rolloff: ' + str(rolloff.shape))
+		if poly is not None:
+			res.append('poly: ' + str(poly.shape))
+		if zeroCrossingRate is not None:
+			res.append('zeroCrossingRate: ' + str(zeroCrossingRate.shape))
+		if tonnetz is not None:
+			res.append('tonnetz: ' + str(tonnetz.shape))
+		if csvConfig is not None:
+			res.append('csvConfig: ' + csvConfig)
+		if csvPath is not None:
+			res.append('csvPath: ' + csvPath)
+		if wavConfig is not None:
+			res.append('wavConfig: ' + wavConfig)
+		if wavPath is not None:
+			res.append('wavPath: ' + wavPath)
 
-	res = '\n'.join(res)
+		res = '\n'.join(res)
 
-	print(res)
+		print(res)
+
+	else:
+		if features is not None:
+			print(json.dumps(features.tolist()))
+		elif stft is not None:
+			print(json.dumps(stft.tolist()))
+		elif y is not None:
+			print(json.dumps(y.tolist()))

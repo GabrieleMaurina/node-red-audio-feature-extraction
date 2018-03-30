@@ -44,7 +44,7 @@
         "y": 400,
         "wires": [
             [
-                "9ada21f5.062e5"
+                "83951523.fb0858"
             ]
         ]
     },
@@ -99,20 +99,6 @@
         ]
     },
     {
-        "id": "48444031.a3261",
-        "type": "debug",
-        "z": "63747e25.a77bb",
-        "name": "Print",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "x": 810,
-        "y": 280,
-        "wires": []
-    },
-    {
         "id": "35fd203c.7f501",
         "type": "persistance",
         "z": "63747e25.a77bb",
@@ -152,7 +138,7 @@
         "y": 220,
         "wires": [
             [
-                "48444031.a3261"
+                "83951523.fb0858"
             ]
         ]
     },
@@ -169,21 +155,6 @@
         "wires": [
             [
                 "80bc2b7d.177a98"
-            ]
-        ]
-    },
-    {
-        "id": "6910192.c0265e8",
-        "type": "serial in",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "serial": "1dcac3df.02db3c",
-        "x": 130,
-        "y": 340,
-        "wires": [
-            [
-                "7e7d462d.d6eea8",
-                "76229248.66f8cc"
             ]
         ]
     },
@@ -214,7 +185,7 @@
         "y": 520,
         "wires": [
             [
-                "af8c2a38.cbf3d8"
+                "83951523.fb0858"
             ]
         ]
     },
@@ -231,34 +202,6 @@
                 "e992b7ba.3d32a8"
             ]
         ]
-    },
-    {
-        "id": "9ada21f5.062e5",
-        "type": "debug",
-        "z": "63747e25.a77bb",
-        "name": "Print",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "x": 810,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "af8c2a38.cbf3d8",
-        "type": "debug",
-        "z": "63747e25.a77bb",
-        "name": "Print",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "x": 570,
-        "y": 580,
-        "wires": []
     },
     {
         "id": "76229248.66f8cc",
@@ -280,7 +223,7 @@
         "id": "b2a108ed.0e5138",
         "type": "debug",
         "z": "63747e25.a77bb",
-        "name": "Print",
+        "name": "print",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -291,17 +234,170 @@
         "wires": []
     },
     {
-        "id": "1dcac3df.02db3c",
-        "type": "serial-port",
+        "id": "147a9c8c.3a7e33",
+        "type": "mqtt in",
         "z": "63747e25.a77bb",
-        "serialport": "COM3",
-        "serialbaud": "115200",
-        "databits": "8",
-        "parity": "none",
-        "stopbits": "1",
-        "newline": "441000",
-        "bin": "bin",
-        "out": "count",
-        "addchar": false
+        "name": "",
+        "topic": "maurina samples",
+        "qos": "2",
+        "broker": "642b657c.1625ec",
+        "x": 100,
+        "y": 340,
+        "wires": [
+            [
+                "7e7d462d.d6eea8",
+                "76229248.66f8cc",
+                "462cd98b.48d6f8"
+            ]
+        ]
+    },
+    {
+        "id": "83951523.fb0858",
+        "type": "file",
+        "z": "63747e25.a77bb",
+        "name": "log",
+        "filename": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test\\log.txt",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "x": 810,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ae7d82f0.c6015",
+        "type": "collector",
+        "z": "63747e25.a77bb",
+        "name": "",
+        "x": 200,
+        "y": 760,
+        "wires": [
+            [
+                "a972cf53.6aa45"
+            ]
+        ]
+    },
+    {
+        "id": "a972cf53.6aa45",
+        "type": "base path",
+        "z": "63747e25.a77bb",
+        "name": "",
+        "basePath": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test",
+        "x": 320,
+        "y": 820,
+        "wires": [
+            [
+                "e7cd4573.25d2e8"
+            ]
+        ]
+    },
+    {
+        "id": "d8506d6f.740a3",
+        "type": "chroma",
+        "z": "63747e25.a77bb",
+        "name": "",
+        "norm": "",
+        "tuning": "",
+        "x": 580,
+        "y": 940,
+        "wires": [
+            [
+                "1cb959f2.6cb1d6"
+            ]
+        ]
+    },
+    {
+        "id": "e7cd4573.25d2e8",
+        "type": "persistance",
+        "z": "63747e25.a77bb",
+        "name": "",
+        "save": "myChroma",
+        "file": "overwrite",
+        "x": 450,
+        "y": 880,
+        "wires": [
+            [
+                "d8506d6f.740a3"
+            ]
+        ]
+    },
+    {
+        "id": "35c28e55.f77da2",
+        "type": "mqtt in",
+        "z": "63747e25.a77bb",
+        "name": "",
+        "topic": "maurina fft",
+        "qos": "2",
+        "broker": "642b657c.1625ec",
+        "x": 100,
+        "y": 700,
+        "wires": [
+            [
+                "ae7d82f0.c6015",
+                "a3ce6cb2.e73bb"
+            ]
+        ]
+    },
+    {
+        "id": "a3ce6cb2.e73bb",
+        "type": "function",
+        "z": "63747e25.a77bb",
+        "name": "counter",
+        "func": "context.count = (context.count || 0) + 1\nmsg.payload = context.count\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 640,
+        "wires": [
+            [
+                "c3f226e4.966478"
+            ]
+        ]
+    },
+    {
+        "id": "c3f226e4.966478",
+        "type": "debug",
+        "z": "63747e25.a77bb",
+        "name": "print",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 450,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "1cb959f2.6cb1d6",
+        "type": "file",
+        "z": "63747e25.a77bb",
+        "name": "log",
+        "filename": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test\\myLog.txt",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "x": 690,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "642b657c.1625ec",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "iot.eclipse.org",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
     }
 ]

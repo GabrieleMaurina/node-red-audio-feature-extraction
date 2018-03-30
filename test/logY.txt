@@ -1,0 +1,100 @@
+2018-03-27 11:50:54.072283
+samples: (441000,)
+sample rate: 44100
+wavConfig: append
+wavPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\audio
+
+2018-03-27 11:51:02.882665
+samples: (220500,)
+sample rate: 22050
+stft: (501, 11026)
+features: (11026, 15)
+mfcc: (15, 11026)
+csvConfig: generate new
+csvPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\mfcc0
+
+2018-03-27 11:51:10.249430
+samples: (220500,)
+sample rate: 22050
+stft: (501, 11026)
+features: (11026, 15)
+mfcc: (15, 11026)
+csvConfig: generate new
+csvPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\mfcc1
+
+2018-03-27 11:51:15.177994
+samples: (220500,)
+sample rate: 22050
+stft: (501, 11026)
+features: (11026, 140)
+chroma: (12, 11026)
+mel: (128, 11026)
+csvConfig: overwrite
+csvPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\mel+chroma
+
+2018-03-27 11:51:17.105348
+samples: (220500,)
+sample rate: 22050
+stft: (501, 11026)
+features: (11026, 15)
+mfcc: (15, 11026)
+csvConfig: generate new
+csvPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\mfcc2
+
+2018-03-27 11:51:22.253357
+samples: (882000,)
+sample rate: 44100
+wavConfig: append
+wavPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\audio
+
+2018-03-27 11:51:24.311298
+samples: (1323000,)
+sample rate: 44100
+wavConfig: append
+wavPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\audio
+
+2018-03-27 11:51:32.555947
+samples: (220500,)
+sample rate: 22050
+stft: (501, 11026)
+features: (11026, 140)
+chroma: (12, 11026)
+mel: (128, 11026)
+csvConfig: overwrite
+csvPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\mel+chroma
+
+2018-03-27 11:51:48.954319
+samples: (220500,)
+sample rate: 22050
+stft: (501, 11026)
+features: (11026, 140)
+chroma: (12, 11026)
+mel: (128, 11026)
+csvConfig: overwrite
+csvPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\mel+chroma
+
+2018-03-29 09:37:18.367203
+samples: (220500,)
+sample rate: 22050
+stft: (501, 11026)
+features: (11026, 15)
+mfcc: (15, 11026)
+csvConfig: generate new
+csvPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\mfcc3
+
+2018-03-29 09:37:28.430225
+samples: (1764000,)
+sample rate: 44100
+wavConfig: append
+wavPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\audio
+
+2018-03-29 09:37:28.852118
+samples: (220500,)
+sample rate: 22050
+stft: (501, 11026)
+features: (11026, 140)
+chroma: (12, 11026)
+mel: (128, 11026)
+csvConfig: overwrite
+csvPath: C:\Users\gabri\Documents\Workspace\node-red-audio-feature-extraction\test\mel+chroma
+
