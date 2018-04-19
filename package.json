@@ -1,39 +1,41 @@
 {
-  "name": "node-red-audio-feature-extraction",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Gabriele Maurina",
-  "license": "ISC",
-  "node-red": {
-    "nodes": {
-      "sampler": "nodes\\sampler\\sampler.js",
-      "converter": "nodes\\converter\\converter.js",
-      "collector": "nodes\\collector\\collector.js",
-      "stft": "nodes\\stft\\stft.js",
-      "persistance": "nodes\\persistance\\persistance.js",
-      "wav": "nodes\\wav\\wav.js",
-      "base path": "nodes\\base-path\\base-path.js",
-      "chroma": "nodes\\features\\chroma\\chroma.js",
-      "mel": "nodes\\features\\mel\\mel.js",
-      "mfcc": "nodes\\features\\mfcc\\mfcc.js",
-      "rmse": "nodes\\features\\rmse\\rmse.js",
-      "centroid": "nodes\\features\\centroid\\centroid.js",
-      "bandwidth": "nodes\\features\\bandwidth\\bandwidth.js",
-      "contrast": "nodes\\features\\contrast\\contrast.js",
-      "flatness": "nodes\\features\\flatness\\flatness.js",
-      "rolloff": "nodes\\features\\rolloff\\rolloff.js",
-      "poly": "nodes\\features\\poly\\poly.js",
-      "tonnetz": "nodes\\features\\tonnetz\\tonnetz.js",
-      "zeroCrossingRate": "nodes\\features\\zero-crossing-rate\\zero-crossing-rate.js"
-    }
-  },
-  "dependencies": {
-    "child_process": "^1.0.2",
-    "fs": "0.0.1-security",
-    "path": "^0.12.7"
-  }
+	"name": "node-red-contrib-audio-feature-extraction",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Gabriele Maurina",
+	"license": "ISC",
+	"node-red": {
+		"nodes": {
+			"sampler": "nodes\\sampler\\sampler.js",
+			"converter": "nodes\\converter\\converter.js",
+			"collector": "nodes\\collector\\collector.js",
+			"stft": "nodes\\stft\\stft.js",
+			"persistance": "nodes\\persistance\\persistance.js",
+			"wav": "nodes\\wav\\wav.js",
+			"base path": "nodes\\base-path\\base-path.js",
+			"chroma": "nodes\\features\\chroma\\chroma.js",
+			"mel": "nodes\\features\\mel\\mel.js",
+			"mfcc": "nodes\\features\\mfcc\\mfcc.js",
+			"rmse": "nodes\\features\\rmse\\rmse.js",
+			"centroid": "nodes\\features\\centroid\\centroid.js",
+			"bandwidth": "nodes\\features\\bandwidth\\bandwidth.js",
+			"contrast": "nodes\\features\\contrast\\contrast.js",
+			"flatness": "nodes\\features\\flatness\\flatness.js",
+			"rolloff": "nodes\\features\\rolloff\\rolloff.js",
+			"poly": "nodes\\features\\poly\\poly.js",
+			"tonnetz": "nodes\\features\\tonnetz\\tonnetz.js",
+			"zeroCrossingRate": "nodes\\features\\zero-crossing-rate\\zero-crossing-rate.js"
+		}
+	},
+	"dependencies": {
+		"child_process": "^1.0.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/GabrieleMaurina/node-red-contrib-audio-feature-extraction.git"
+	}
 }

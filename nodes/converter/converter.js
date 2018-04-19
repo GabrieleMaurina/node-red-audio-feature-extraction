@@ -13,7 +13,7 @@ module.exports = function(RED){
         this.name = 'converter'
         this.parameters = {
             orig_sr: parseInt(config.origSr) || 44100,
-            target_sr: parseInt(config.targetSr) || 44100,
+            target_sr: parseInt(config.targetSr) || parseInt(config.origSr) || 44100,
             res_type: config.resType || 'kaiser_best'
         }
         this.readMsg = (msg) => {
