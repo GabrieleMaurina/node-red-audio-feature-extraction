@@ -1,8 +1,8 @@
 module.exports = function(RED){
     function collectorNode(config){
-    	const UINT16_SIZE = 2
-        const FFT_LENGHT = 512
-        const FFT_SIZE = UINT16_SIZE * FFT_LENGHT
+    	const FLOAT_SIZE = 4
+        const FFT_LENGHT = parseInt(config.fftLength) || 512
+        const FFT_SIZE = FLOAT_SIZE * FFT_LENGHT
 
         const utils = require('../../utils/utils')        
 
@@ -12,7 +12,7 @@ module.exports = function(RED){
             for(var i = 0; i < buf.length / FFT_SIZE; i++){
                 arr.push([])
                 for(var j = 0; j < FFT_LENGHT; j++){
-	                arr[i].push(buf.readUInt16LE(i * FFT_SIZE + j * UINT16_SIZE) / 16384)
+	                arr[i].push(buf.readFloatLE(i * FFT_SIZE + j * FLOAT_SIZE))
 	            }
             }
             

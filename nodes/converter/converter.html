@@ -41,5 +41,36 @@
 </script>
 
 <script type="text/x-red" data-help-name="converter">
-	<p>A node that converts a byte buffer of 16 bit integers to an audio time series.</p>
+	<p>A node that converts a binary buffer of 16 bit integers to an audio time series.</p>
+
+	<h3>Inputs</h3>
+	<dl class="message-properties">
+		<dt>payload
+			<span class="property-type">binary buffer</span>
+		</dt>
+		<dd>the buffer containing the audio time series.</dd>
+	</dl>
+
+	<h3>Outputs</h3>
+	<ol class="node-ports">
+		<li>Standard output
+			<dl class="message-properties">
+				<dt>msg.config.converter.y<span class="property-type">array</span></dt>
+				<dd>the audio time series.</dd>
+			</dl>
+		</li>
+	</ol>
+
+	<h3>Details</h3>
+	<p>
+		This node appends <code>config.converter.y</code> to the <code>msg</code> object.
+	</p>
+	<p>
+		Cannot be useb with a collector, nor a sampler.
+	</p>
+
+	<h3>References</h3>
+	<ul>
+		<li><a href="https://github.com/GabrieleMaurina/node-red-contrib-machine-learning">GitHub</a> - the nodes github repository</li>
+	</ul>
 </script>

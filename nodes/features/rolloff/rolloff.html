@@ -23,4 +23,29 @@
 
 <script type="text/x-red" data-help-name="rolloff">
     <p>A node that configures a spectral rolloff.</p>
+
+	<h3>Inputs</h3>
+	<dl class="message-properties">
+		<dd>anything that triggers the process.</dd>
+	</dl>
+
+	<h3>Outputs</h3>
+	<ol class="node-ports">
+		<li>Standard output
+			<dl class="message-properties">
+				<dt>msg.config.rolloff<span class="property-type">object</span></dt>
+				<dd>the object containing the configuration for the rolloff.</dd>
+			</dl>
+		</li>
+	</ol>
+
+	<h3>Details</h3>
+	<p>
+		This node appends <code>config.rolloff</code> to the <code>msg</code> object.
+	</p>
+
+	<h3>References</h3>
+	<ul>
+		<li><a href="https://github.com/GabrieleMaurina/node-red-contrib-machine-learning">GitHub</a> - the nodes github repository</li>
+	</ul>
 </script>
