@@ -12,4 +12,15 @@ To install the stable version use the Menu - Manage palette option and search fo
     npm i node-red-contrib-audio-feature-extraction
 
 ## Usage
-Not written yet.
+
+Wav from mqtt
+![wav](https://i.imgur.com/CXa8V5u.png "Wav from mqtt")
+
+Sampling audio file
+![sampler](https://i.imgur.com/tiSw40E.png "Sampling, stft, feature extraction")
+
+Extract chroma from stft recieved from serial port
+![stft](https://i.imgur.com/sgNRxnC.png "Stft from serial port")
+
+Multiple features allowed
+![features](https://i.imgur.com/e8eClKb.png "Multiple features")
