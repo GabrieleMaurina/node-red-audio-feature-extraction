@@ -13,11 +13,11 @@ To install the stable version use the Menu - Manage palette option and search fo
 
 ## Usage
 
-Wav from mqtt
-![wav](https://i.imgur.com/CXa8V5u.png "Wav from mqtt")
-
-Sampling audio file
+Sampling audio file, computing stft and extracting mfcc
 ![sampler](https://i.imgur.com/tiSw40E.png "Sampling, stft, feature extraction")
+
+Saving wav recieved from mqtt
+![wav](https://i.imgur.com/CXa8V5u.png "Wav from mqtt")
 
 Extract chroma from stft recieved from serial port
 ![stft](https://i.imgur.com/sgNRxnC.png "Stft from serial port")
