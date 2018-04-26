@@ -1,5 +1,5 @@
 # node-red-contrib-audio-feature-extraction
-This module provides a set of nodes in Node-RED with audio feature extraction functionalities.
+This module provides a set of nodes for Node-RED with audio feature extraction functionalities.
 Such nodes have a python core that runs Librosa library.
 
 ## Pre requisites
