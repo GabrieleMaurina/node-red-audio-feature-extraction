@@ -1,8 +1,8 @@
 [
     {
-        "id": "af433d62.4fe8b",
+        "id": "84125a40.9edab8",
         "type": "sampler",
-        "z": "63747e25.a77bb",
+        "z": "21ce826.2ff977e",
         "name": "",
         "file": "sample.wav",
         "sampleRate": "1000",
@@ -10,48 +10,48 @@
         "offset": "2",
         "duration": "1",
         "resType": "kaiser_best",
-        "x": 240,
-        "y": 160,
+        "x": 220,
+        "y": 100,
         "wires": [
             [
-                "80bc2b7d.177a98"
+                "44114b15.858034"
             ]
         ]
     },
     {
-        "id": "80bc2b7d.177a98",
+        "id": "44114b15.858034",
         "type": "stft",
-        "z": "63747e25.a77bb",
+        "z": "21ce826.2ff977e",
         "name": "",
         "nFft": "1000",
         "hopLength": "20",
         "windowLength": "50",
-        "x": 350,
-        "y": 220,
+        "x": 330,
+        "y": 160,
         "wires": [
             [
-                "6f1e65de.ba7d8c"
+                "5cad83b3.b2e02c"
             ]
         ]
     },
     {
-        "id": "64e19ae2.fa2004",
+        "id": "e9503ab2.abcfa8",
         "type": "mfcc",
-        "z": "63747e25.a77bb",
+        "z": "21ce826.2ff977e",
         "name": "",
         "nMFCC": "15",
-        "x": 710,
-        "y": 400,
+        "x": 690,
+        "y": 340,
         "wires": [
             [
-                "83951523.fb0858"
+                "d7fbf2f0.1cfcd"
             ]
         ]
     },
     {
-        "id": "1504fe20.876032",
+        "id": "daae8de1.b89ce",
         "type": "inject",
-        "z": "63747e25.a77bb",
+        "z": "21ce826.2ff977e",
         "name": "Start",
         "topic": "",
         "payload": "",
@@ -60,344 +60,54 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 130,
-        "y": 100,
+        "x": 110,
+        "y": 40,
         "wires": [
             [
-                "af433d62.4fe8b"
+                "84125a40.9edab8"
             ]
         ]
     },
     {
-        "id": "4f98e6bf.242318",
+        "id": "70f802ff.529a5c",
         "type": "persistance",
-        "z": "63747e25.a77bb",
+        "z": "21ce826.2ff977e",
         "name": "",
         "save": "mfcc",
         "file": "generate new",
-        "x": 590,
-        "y": 340,
-        "wires": [
-            [
-                "64e19ae2.fa2004"
-            ]
-        ]
-    },
-    {
-        "id": "6f1e65de.ba7d8c",
-        "type": "base path",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "basePath": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test",
-        "x": 460,
+        "x": 570,
         "y": 280,
         "wires": [
             [
-                "4f98e6bf.242318",
-                "35fd203c.7f501"
+                "e9503ab2.abcfa8"
             ]
         ]
     },
     {
-        "id": "35fd203c.7f501",
-        "type": "persistance",
-        "z": "63747e25.a77bb",
+        "id": "5cad83b3.b2e02c",
+        "type": "base path",
+        "z": "21ce826.2ff977e",
         "name": "",
-        "save": "mel+chroma",
-        "file": "overwrite",
-        "x": 470,
-        "y": 100,
-        "wires": [
-            [
-                "36af2484.a934bc"
-            ]
-        ]
-    },
-    {
-        "id": "36af2484.a934bc",
-        "type": "mel",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "power": "1",
-        "x": 590,
-        "y": 160,
-        "wires": [
-            [
-                "b682b96a.b47f48"
-            ]
-        ]
-    },
-    {
-        "id": "b682b96a.b47f48",
-        "type": "chroma",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "norm": "",
-        "tuning": "",
-        "x": 700,
+        "basePath": "test",
+        "x": 440,
         "y": 220,
         "wires": [
             [
-                "83951523.fb0858"
+                "70f802ff.529a5c"
             ]
         ]
     },
     {
-        "id": "462cd98b.48d6f8",
-        "type": "converter",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "origSr": "",
-        "targetSr": "22050",
-        "resType": "kaiser_best",
-        "x": 240,
-        "y": 280,
-        "wires": [
-            [
-                "80bc2b7d.177a98"
-            ]
-        ]
-    },
-    {
-        "id": "7e7d462d.d6eea8",
-        "type": "converter",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "origSr": "",
-        "targetSr": "",
-        "resType": "kaiser_best",
-        "x": 240,
+        "id": "d7fbf2f0.1cfcd",
+        "type": "file",
+        "z": "21ce826.2ff977e",
+        "name": "log",
+        "filename": "test/log.txt",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "x": 790,
         "y": 400,
-        "wires": [
-            [
-                "6038772.25cf188"
-            ]
-        ]
-    },
-    {
-        "id": "e992b7ba.3d32a8",
-        "type": "wav",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "save": "audio",
-        "file": "append",
-        "x": 470,
-        "y": 520,
-        "wires": [
-            [
-                "83951523.fb0858"
-            ]
-        ]
-    },
-    {
-        "id": "6038772.25cf188",
-        "type": "base path",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "basePath": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test",
-        "x": 360,
-        "y": 460,
-        "wires": [
-            [
-                "e992b7ba.3d32a8"
-            ]
-        ]
-    },
-    {
-        "id": "76229248.66f8cc",
-        "type": "function",
-        "z": "63747e25.a77bb",
-        "name": "counter",
-        "func": "context.count = (context.count || 0) + 1\nmsg.payload = context.count\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 220,
-        "y": 520,
-        "wires": [
-            [
-                "b2a108ed.0e5138"
-            ]
-        ]
-    },
-    {
-        "id": "b2a108ed.0e5138",
-        "type": "debug",
-        "z": "63747e25.a77bb",
-        "name": "print",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "x": 330,
-        "y": 580,
         "wires": []
-    },
-    {
-        "id": "147a9c8c.3a7e33",
-        "type": "mqtt in",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "topic": "maurina samples",
-        "qos": "2",
-        "broker": "642b657c.1625ec",
-        "x": 100,
-        "y": 340,
-        "wires": [
-            [
-                "7e7d462d.d6eea8",
-                "76229248.66f8cc",
-                "462cd98b.48d6f8"
-            ]
-        ]
-    },
-    {
-        "id": "83951523.fb0858",
-        "type": "file",
-        "z": "63747e25.a77bb",
-        "name": "log",
-        "filename": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test\\log.txt",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "x": 810,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "ae7d82f0.c6015",
-        "type": "collector",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "x": 200,
-        "y": 760,
-        "wires": [
-            [
-                "a972cf53.6aa45"
-            ]
-        ]
-    },
-    {
-        "id": "a972cf53.6aa45",
-        "type": "base path",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "basePath": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test",
-        "x": 320,
-        "y": 820,
-        "wires": [
-            [
-                "e7cd4573.25d2e8"
-            ]
-        ]
-    },
-    {
-        "id": "d8506d6f.740a3",
-        "type": "chroma",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "norm": "",
-        "tuning": "",
-        "x": 580,
-        "y": 940,
-        "wires": [
-            [
-                "1cb959f2.6cb1d6"
-            ]
-        ]
-    },
-    {
-        "id": "e7cd4573.25d2e8",
-        "type": "persistance",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "save": "myChroma",
-        "file": "overwrite",
-        "x": 450,
-        "y": 880,
-        "wires": [
-            [
-                "d8506d6f.740a3"
-            ]
-        ]
-    },
-    {
-        "id": "35c28e55.f77da2",
-        "type": "mqtt in",
-        "z": "63747e25.a77bb",
-        "name": "",
-        "topic": "maurina fft",
-        "qos": "2",
-        "broker": "642b657c.1625ec",
-        "x": 100,
-        "y": 700,
-        "wires": [
-            [
-                "ae7d82f0.c6015",
-                "a3ce6cb2.e73bb"
-            ]
-        ]
-    },
-    {
-        "id": "a3ce6cb2.e73bb",
-        "type": "function",
-        "z": "63747e25.a77bb",
-        "name": "counter",
-        "func": "context.count = (context.count || 0) + 1\nmsg.payload = context.count\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 340,
-        "y": 640,
-        "wires": [
-            [
-                "c3f226e4.966478"
-            ]
-        ]
-    },
-    {
-        "id": "c3f226e4.966478",
-        "type": "debug",
-        "z": "63747e25.a77bb",
-        "name": "print",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "x": 450,
-        "y": 700,
-        "wires": []
-    },
-    {
-        "id": "1cb959f2.6cb1d6",
-        "type": "file",
-        "z": "63747e25.a77bb",
-        "name": "log",
-        "filename": "C:\\Users\\gabri\\Documents\\Workspace\\node-red-audio-feature-extraction\\test\\myLog.txt",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "x": 690,
-        "y": 1000,
-        "wires": []
-    },
-    {
-        "id": "642b657c.1625ec",
-        "type": "mqtt-broker",
-        "z": "",
-        "name": "",
-        "broker": "iot.eclipse.org",
-        "port": "1883",
-        "clientid": "",
-        "usetls": false,
-        "compatmode": true,
-        "keepalive": "60",
-        "cleansession": true,
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": ""
     }
 ]

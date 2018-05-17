@@ -9,13 +9,16 @@ from datetime import datetime
 last_y, last_features, last_wav, last_csv = [None] * 4
 
 while(True):
-	y, sr, stft, features, chroma, mfcc, mel, rmse, centroid, bandwidth, contrast, flatness, rolloff, poly, zeroCrossingRate, tonnetz, csvConfig, csvPath, wavConfig, wavPath = [None] * 20
+	y, sr, stft, features, chroma, mfcc, mel, rmse, \
+	centroid, bandwidth, contrast, flatness, rolloff, \
+	poly, zeroCrossingRate, tonnetz, csvConfig, csvPath, \
+	wavConfig, wavPath = [None] * 20
 
 	data = json.loads(input())
 
 	basePath = ''
 	if 'basePath' in data:
-		basePath = data['basePath']['path'] + '\\'
+		basePath = data['basePath']['path'] + '/'
 
 	if 'sampler' in data:
 		file = basePath + data['sampler']['file']
@@ -85,27 +88,28 @@ while(True):
 			csvConfig = data['persistance']['file']
 			csvPath = basePath + data['persistance']['save']
 
-		if csvConfig == 'append':
-			if last_features is None:
-				try:
-					last_features = numpy.loadtxt(csvPath + '.csv', delimiter=',')
-				except:
-					pass
-			if last_features is not None:
-				features = numpy.vstack([last_features, features])
-				last_features = features
+			if csvConfig == 'append':
+				if last_features is None:
+					try:
+						last_features = numpy.loadtxt(csvPath + '.csv', delimiter=',')
+					except:
+						pass
+				if last_features is not None:
+					features = numpy.vstack([last_features, features])
+					last_features = features
 
-		elif csvConfig == 'generate new':
-			if last_csv is None:
-				i = 0
-			else:
-				i = last_csv + 1
-			while os.path.exists(csvPath + str(i) + '.csv'):
-			    i += 1
-			csvPath += str(i)
-			last_csv = i
+			elif csvConfig == 'generate new':
+				if last_csv is None:
+					i = 0
+				else:
+					i = last_csv + 1
+				while os.path.exists(csvPath + str(i) + '.csv'):
+				    i += 1
+				csvPath += str(i)
+				last_csv = i
 
-		numpy.savetxt(csvPath + '.csv', features, delimiter=',')
+			csvPath += '.csv'
+			numpy.savetxt(csvPath, features, delimiter=',')
 
 	if 'wav' in data:
 		wavPath, wavConfig = data['wav'].values()
@@ -128,11 +132,14 @@ while(True):
 			    i += 1
 			wavPath += str(i)
 			last_wav = i
-		librosa.output.write_wav(wavPath + '.wav', y, sr)
+		wavPath += '.wav'
+		librosa.output.write_wav(wavPath, y, sr)
 
 	if 'persistance' in data or 'wav' in data:
 		res = []
 		res.append(str(datetime.now()))
+		if file is not None:
+			res.append('file: ' + file)
 		if y is not None:
 			res.append('samples: ' + str(y.shape))
 		if sr is not None:
@@ -180,8 +187,8 @@ while(True):
 
 	else:
 		if features is not None:
-			print(json.dumps(features.tolist()))
+			print(json.dumps(features.tolist()), end='')
 		elif stft is not None:
-			print(json.dumps(stft.tolist()))
+			print(json.dumps(stft.tolist()), end='')
 		elif y is not None:
-			print(json.dumps(y.tolist()))
+			print(json.dumps(y.tolist()), end='')

@@ -11,6 +11,13 @@ module.exports = function(RED){
   			duration: Number(config.duration) || undefined,
   			res_type: config.resType || undefined
   		}
+  		if(this.parameters.file == undefined){
+  			this.readMsg = (msg) => {
+	  			if(msg.payload != undefined){
+	            	msg.config.sampler.file = msg.payload
+	  			}
+        	}
+  		}
   		utils.run(RED, this, config)
     }
 

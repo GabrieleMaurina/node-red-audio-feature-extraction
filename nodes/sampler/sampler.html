@@ -4,7 +4,7 @@
         color: '#C7E9C0',
         defaults: {
             name: {value:""},
-      			file: {value:"", required: true},
+      			file: {value:""},
       			sampleRate: {value:""},
       			mono: {value:""},
       			offset: {value:""},
@@ -60,7 +60,10 @@
 
 	<h3>Inputs</h3>
 	<dl class="message-properties">
-		<dd>anything that triggers the process.</dd>
+		<dt>payload
+			<span class="property-type">string</span>
+		</dt>
+		<dd>the name of the wav file or empty.</dd>
 	</dl>
 
 	<h3>Outputs</h3>

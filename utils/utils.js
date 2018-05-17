@@ -3,7 +3,7 @@ const {spawn} = require('child_process')
 
 const initProc = (node) => {
 	if (node.proc == null){
-		node.proc = spawn('python', [__dirname + '\\..\\python\\extract.py'], ['pipe', 'pipe','pipe'])
+		node.proc = spawn('python', [__dirname + '/../python/extract.py'], ['pipe', 'pipe','pipe'])
 
 		node.proc.stdout.on('data', (data) => {
 			try{
@@ -13,6 +13,10 @@ const initProc = (node) => {
 					msg = node.msg
 				}
 				msg.payload = data.toString()
+				try{
+					msg.payload = JSON.parse(msg.payload)
+				}
+				catch(err){}
 				node.send(msg)
 			}
 			catch(err){}
