@@ -4,7 +4,7 @@ Such nodes have a python core that runs on Librosa library.
 
 ## Pre requisites
 Install the following python libraries
-* Python 3.6.4 or higher
+* Python 3.6.4 or higher accessible with the command 'python' (on linux 'python3')
 * Librosa
 
 ## Install
@@ -16,6 +16,7 @@ To install the stable version use the Menu - Manage palette option and search fo
 These are a few examples of what can be done with this package.
 Each node of this library appends its configurations to the msg object.
 Only the last node in a flow will carry out all the computations according to all configurations.
+The flows and the test audio file are available in the 'test' folder.
 
 Sampling audio file, computing stft and extracting mfcc
 ![sampler](https://i.imgur.com/tiSw40E.png "Sampling, stft, feature extraction")
