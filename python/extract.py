@@ -9,11 +9,12 @@ from datetime import datetime
 last_y, last_features, last_wav, last_csv = [None] * 4
 
 while(True):
-	y, sr, stft, features, chroma, mfcc, mel, rmse, \
-	centroid, bandwidth, contrast, flatness, rolloff, \
-	poly, zeroCrossingRate, tonnetz, csvConfig, csvPath, \
+	y, sr, stft, features, chroma, mfcc, mel, rmse,
+	centroid, bandwidth, contrast, flatness, rolloff,
+	poly, zeroCrossingRate, tonnetz, csvConfig, csvPath,
 	wavConfig, wavPath = [None] * 20
 
+	#read request
 	data = json.loads(input())
 
 	basePath = ''
@@ -39,6 +40,7 @@ while(True):
 		stft = numpy.array(data['collector']['stft']).T
 
 	if stft is not None:
+		#compute features
 		features = []
 		if 'chroma' in data:
 			chroma = librosa.feature.chroma_stft(S=stft, **data['chroma'])
@@ -84,6 +86,7 @@ while(True):
 
 		features = numpy.hstack(features)
 
+		#save csv
 		if 'persistance' in data:
 			csvConfig = data['persistance']['file']
 			csvPath = basePath + data['persistance']['save']
@@ -111,6 +114,7 @@ while(True):
 			csvPath += '.csv'
 			numpy.savetxt(csvPath, features, delimiter=',')
 
+	#save wav
 	if 'wav' in data:
 		wavPath, wavConfig = data['wav'].values()
 		wavPath = basePath + wavPath
@@ -135,6 +139,7 @@ while(True):
 		wavPath += '.wav'
 		librosa.output.write_wav(wavPath, y, sr)
 
+	#return log, if csv or wav file were saved
 	if 'persistance' in data or 'wav' in data:
 		res = []
 		res.append(str(datetime.now()))
@@ -185,6 +190,7 @@ while(True):
 
 		print(res)
 
+	#otherwise return what was extracted
 	else:
 		if features is not None:
 			print(json.dumps(features.tolist()), end='')

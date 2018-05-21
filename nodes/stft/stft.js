@@ -1,7 +1,8 @@
 module.exports = function(RED){
-    function stftNode(config){
+	function stftNode(config){
 		const utils = require('../../utils/utils')
-		
+
+		//set configurations
 		this.name = 'stft'
 
 		this.parameters = {
@@ -10,7 +11,7 @@ module.exports = function(RED){
 			win_length: parseInt(config.windowLength) || undefined
 		}
 		utils.run(RED, this, config)
-    }
+	}
 	
-    RED.nodes.registerType("stft", stftNode)
+	RED.nodes.registerType("stft", stftNode)
 }

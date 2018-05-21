@@ -1,11 +1,12 @@
 module.exports = function(RED){
-  function rolloffNode(config){
-  		const utils = require('../../../utils/utils')
+	function rolloffNode(config){
+		const utils = require('../../../utils/utils')
 
-  		this.name = 'rolloff'
-  		this.parameters = {}
-  		utils.run(RED, this, config)
-  }
+		//set configurations
+		this.name = 'rolloff'
+		this.parameters = {}
+		utils.run(RED, this, config)
+	}
 
-  RED.nodes.registerType('rolloff', rolloffNode)
+	RED.nodes.registerType('rolloff', rolloffNode)
 }

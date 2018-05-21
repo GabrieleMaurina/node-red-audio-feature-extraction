@@ -1,31 +1,34 @@
 module.exports = function(RED){
-    function collectorNode(config){
-    	const FLOAT_SIZE = 4
-        const FFT_LENGHT = parseInt(config.fftLength) || 512
-        const FFT_SIZE = FLOAT_SIZE * FFT_LENGHT
+	function collectorNode(config){
+		const FLOAT_SIZE = 4
+		const FFT_LENGHT = parseInt(config.fftLength) || 512
+		const FFT_SIZE = FLOAT_SIZE * FFT_LENGHT
 
-        const utils = require('../../utils/utils')        
+		const utils = require('../../utils/utils')        
 
-        var convert = (buf) => {
-            var arr = []
+		var convert = (buf) => {
+			var arr = []
 
-            for(var i = 0; i < buf.length / FFT_SIZE; i++){
-                arr.push([])
-                for(var j = 0; j < FFT_LENGHT; j++){
-	                arr[i].push(buf.readFloatLE(i * FFT_SIZE + j * FLOAT_SIZE))
-	            }
-            }
-            
-            return arr
-        }
+			for(var i = 0; i < buf.length / FFT_SIZE; i++){
+				arr.push([])
+				for(var j = 0; j < FFT_LENGHT; j++){
+					arr[i].push(buf.readFloatLE(i * FFT_SIZE + j * FLOAT_SIZE))
+				}
+			}
+			
+			return arr
+		}
 
-        this.name = 'collector'
-        this.parameters = {}
-        this.readMsg = (msg) => {
-            msg.config.collector.stft = convert(msg.payload)
-        }
-        utils.run(RED, this, config)
-    }
+		//set configurations
+		this.name = 'collector'
+		this.parameters = {}
 
-    RED.nodes.registerType("collector", collectorNode)
+		//set msg preprocessing
+		this.preMsg = (msg) => {
+			msg.config.collector.stft = convert(msg.payload)
+		}
+		utils.run(RED, this, config)
+	}
+
+	RED.nodes.registerType("collector", collectorNode)
 }
