@@ -1,9 +1,11 @@
 const status = require('./status.js')
 const {spawn} = require('child_process')
 
+const pcmd = process.platform === 'linux' ? 'python3' : 'python'
+
 const initProc = (node) => {
 	if (node.proc == null){
-		node.proc = spawn('python', [__dirname + '/../python/extract.py'], ['pipe', 'pipe','pipe'])
+		node.proc = spawn(pcmd, [__dirname + '/../python/extract.py'], ['pipe', 'pipe','pipe'])
 
 		node.proc.stdout.on('data', (data) => {
 			try{
