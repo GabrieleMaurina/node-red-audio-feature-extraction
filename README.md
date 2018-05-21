@@ -6,6 +6,7 @@ Such nodes have a python core that runs on Librosa library.
 Install the following python libraries
 * Python 3.6.4 or higher accessible with the command 'python' (on linux 'python3')
 * Librosa
+* Numpy
 
 ## Install
 To install the stable version use the Menu - Manage palette option and search for node-red-contrib-audio-feature-extraction, or run the following command in your Node-RED user directory (typically ~/.node-red):
