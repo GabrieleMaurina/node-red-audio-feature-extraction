@@ -9,9 +9,9 @@ from datetime import datetime
 last_y, last_features, last_wav, last_csv = [None] * 4
 
 while(True):
-	y, sr, stft, features, chroma, mfcc, mel, rmse,
-	centroid, bandwidth, contrast, flatness, rolloff,
-	poly, zeroCrossingRate, tonnetz, csvConfig, csvPath,
+	y, sr, stft, features, chroma, mfcc, mel, rmse,\
+	centroid, bandwidth, contrast, flatness, rolloff,\
+	poly, zeroCrossingRate, tonnetz, csvConfig, csvPath,\
 	wavConfig, wavPath = [None] * 20
 
 	#read request
