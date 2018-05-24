@@ -3,6 +3,7 @@ This module for Node-RED contains a set of nodes which offer audio feature extra
 Such nodes have a python core that runs on Librosa library.
 
 ## Pre requisites
+Be sure to have a working installation of [Node-RED](https://nodered.org/ "Node-RED").  
 Install python and the following libraries:
 * [Python](https://www.python.org/ "Python") 3.6.4 or higher accessible by the command 'python' (on linux 'python3')
 * [Librosa](https://librosa.github.io/librosa/ "Librosa")
@@ -14,10 +15,11 @@ To install the stable version use the Menu - Manage palette option and search fo
     npm i node-red-contrib-audio-feature-extraction
 
 ## Usage
-These are a few examples of what can be done with this package.
-Each node of this library appends its configurations to the msg object.
-Only the last node in a flow will carry out all the computations according to all configurations.
-The flows and the test audio file are available in the 'test' folder.
+These are a few examples of what can be done with this package.  
+**Warning:** Each node of this library appends its configurations to the msg object. Only the last node in a flow will carry out all the computations according to all configurations.
+
+Flows and a test audio file are available in the 'test' folder. Make sure that the paths specified inside nodes' configurations are correct before trying to execute the program.  
+**Tip:** you can run 'node-red' (or 'sudo node-red' if you are uning linux) from the folder '.node-red/node-modules/node-red-contrib-audio-feature-extraction' and the paths will be automatically correct.
 
 Sampling audio file, computing stft and extracting mfcc  
 ![sampler](https://i.imgur.com/eefncOA.png "Sampling, stft, feature extraction")
