@@ -4,9 +4,9 @@ Such nodes have a python core that runs on Librosa library.
 
 ## Pre requisites
 Install the following python libraries
-* Python 3.6.4 or higher accessible with the command 'python' (on linux 'python3')
-* Librosa
-* Numpy
+* [Python](https://www.python.org/ "Python") 3.6.4 or higher accessible with the command 'python' (on linux 'python3')
+* [Librosa](https://librosa.github.io/librosa/ "Librosa")
+* [Numpy](http://www.numpy.org/ "Numpy")
 
 ## Install
 To install the stable version use the Menu - Manage palette option and search for node-red-contrib-audio-feature-extraction, or run the following command in your Node-RED user directory (typically ~/.node-red):
@@ -19,27 +19,27 @@ Each node of this library appends its configurations to the msg object.
 Only the last node in a flow will carry out all the computations according to all configurations.
 The flows and the test audio file are available in the 'test' folder.
 
-Sampling audio file, computing stft and extracting mfcc
-![sampler](https://i.imgur.com/tiSw40E.png "Sampling, stft, feature extraction")
+Sampling audio file, computing stft and extracting mfcc  
+![sampler](https://i.imgur.com/eefncOA.png "Sampling, stft, feature extraction")
 
-Saving wav recieved from mqtt
+Saving wav recieved from mqtt  
 ![wav](https://i.imgur.com/CXa8V5u.png "Wav from mqtt")
 
-Extract chroma from stft recieved from serial port
+Extract chroma from stft recieved from serial port  
 ![stft](https://i.imgur.com/sgNRxnC.png "Stft from serial port")
 
-Multiple features allowed
+Multiple features allowed  
 ![features](https://i.imgur.com/e8eClKb.png "Multiple features")
 
 When no persistance and no wav nodes are present, the result is returned by the last block.
-Print STFT
-![features](https://i.imgur.com/3pkAu4S.png "Multiple features")
+Print STFT  
+![features](https://i.imgur.com/pS9ZvSO.png "Multiple features")
 
 Example flows available here:
 ```json
 [
     {
-        "id": "84125a40.9edab8",
+        "id": "a69917f5.fec6b8",
         "type": "sampler",
         "z": "21ce826.2ff977e",
         "name": "",
@@ -49,49 +49,49 @@ Example flows available here:
         "offset": "2",
         "duration": "1",
         "resType": "kaiser_best",
-        "x": 220,
-        "y": 100,
+        "x": 240,
+        "y": 160,
         "wires": [
             [
-                "44114b15.858034"
+                "aa7b980b.277768"
             ]
         ]
     },
     {
-        "id": "44114b15.858034",
+        "id": "aa7b980b.277768",
         "type": "stft",
         "z": "21ce826.2ff977e",
         "name": "",
         "nFft": "1000",
         "hopLength": "20",
         "windowLength": "50",
-        "x": 330,
-        "y": 160,
+        "x": 350,
+        "y": 220,
         "wires": [
             [
-                "5cad83b3.b2e02c"
+                "244c7de6.e44682"
             ]
         ]
     },
     {
-        "id": "e9503ab2.abcfa8",
+        "id": "3910427c.761cce",
         "type": "mfcc",
         "z": "21ce826.2ff977e",
         "name": "",
         "nMFCC": "15",
-        "x": 690,
-        "y": 340,
+        "x": 710,
+        "y": 400,
         "wires": [
             [
-                "d7fbf2f0.1cfcd"
+                "e669f77a.651a38"
             ]
         ]
     },
     {
-        "id": "daae8de1.b89ce",
+        "id": "6669a833.3e3438",
         "type": "inject",
         "z": "21ce826.2ff977e",
-        "name": "Start",
+        "name": "start",
         "topic": "",
         "payload": "",
         "payloadType": "date",
@@ -99,45 +99,45 @@ Example flows available here:
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 110,
-        "y": 40,
+        "x": 130,
+        "y": 100,
         "wires": [
             [
-                "84125a40.9edab8"
+                "a69917f5.fec6b8"
             ]
         ]
     },
     {
-        "id": "70f802ff.529a5c",
+        "id": "81e5b599.509988",
         "type": "persistance",
         "z": "21ce826.2ff977e",
         "name": "",
         "save": "mfcc",
         "file": "generate new",
-        "x": 570,
-        "y": 280,
+        "x": 590,
+        "y": 340,
         "wires": [
             [
-                "e9503ab2.abcfa8"
+                "3910427c.761cce"
             ]
         ]
     },
     {
-        "id": "5cad83b3.b2e02c",
+        "id": "244c7de6.e44682",
         "type": "base path",
         "z": "21ce826.2ff977e",
         "name": "",
         "basePath": "test",
-        "x": 440,
-        "y": 220,
+        "x": 460,
+        "y": 280,
         "wires": [
             [
-                "70f802ff.529a5c"
+                "81e5b599.509988"
             ]
         ]
     },
     {
-        "id": "d7fbf2f0.1cfcd",
+        "id": "e669f77a.651a38",
         "type": "file",
         "z": "21ce826.2ff977e",
         "name": "log",
@@ -145,8 +145,8 @@ Example flows available here:
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "false",
-        "x": 790,
-        "y": 400,
+        "x": 810,
+        "y": 460,
         "wires": []
     }
 ]
