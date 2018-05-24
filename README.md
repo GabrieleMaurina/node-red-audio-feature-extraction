@@ -15,27 +15,27 @@ To install the stable version use the Menu - Manage palette option and search fo
     npm i node-red-contrib-audio-feature-extraction
 
 ## Usage
-These are a few examples of what can be done with this package.  
-**Warning:** Each node of this library appends its configurations to the msg object. Only the last node in a flow will carry out all the computations according to all configurations.
+These are a few examples of what can be done with this package.
 
 Flows and a test audio file are available in the 'test' folder. Make sure that the paths specified inside nodes' configurations are correct before trying to execute the program.  
 **Tip:** you can run 'node-red' (or 'sudo node-red' if you are uning linux) from the folder '.node-red/node-modules/node-red-contrib-audio-feature-extraction' and the paths will be automatically correct.
 
-Sampling audio file, computing stft and extracting mfcc  
+Sampling audio file, computing stft, extracting mfcc and saving csv file.  
 ![sampler](https://i.imgur.com/eefncOA.png "Sampling, stft, feature extraction")
 
-Saving wav recieved from mqtt  
+Saving wav recieved from mqtt.  
 ![wav](https://i.imgur.com/CXa8V5u.png "Wav from mqtt")
 
-Extract chroma from stft recieved from serial port  
+Extract chroma from stft recieved from serial port.  
 ![stft](https://i.imgur.com/sgNRxnC.png "Stft from serial port")
 
-Multiple features allowed  
+Multiple features can be extracted at the same time.  
 ![features](https://i.imgur.com/e8eClKb.png "Multiple features")
 
-When no persistance and no wav nodes are present, the result is returned by the last block.
-Print STFT  
+When no persistance and no wav nodes are present, the result is returned by the last block. In this example the STFT is printed.  
 ![features](https://i.imgur.com/pS9ZvSO.png "Multiple features")
+
+**Warning:** each node of this library appends its configurations to the msg object. Only the last node in a flow will carry out all the computations according to all configurations.
 
 Example flows available here:
 ```json
