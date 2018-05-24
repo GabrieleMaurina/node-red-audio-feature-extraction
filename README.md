@@ -4,7 +4,7 @@ Such nodes have a python core that runs on Librosa library.
 
 ## Pre requisites
 Install python and the following libraries:
-* [Python](https://www.python.org/ "Python") 3.6.4 or higher accessible with the command 'python' (on linux 'python3')
+* [Python](https://www.python.org/ "Python") 3.6.4 or higher accessible by the command 'python' (on linux 'python3')
 * [Librosa](https://librosa.github.io/librosa/ "Librosa")
 * [Numpy](http://www.numpy.org/ "Numpy")
 
