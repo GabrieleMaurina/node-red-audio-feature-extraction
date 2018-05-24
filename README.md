@@ -3,7 +3,7 @@ This module for Node-RED contains a set of nodes which offer audio feature extra
 Such nodes have a python core that runs on Librosa library.
 
 ## Pre requisites
-Install the following python libraries
+Install python and the following libraries:
 * [Python](https://www.python.org/ "Python") 3.6.4 or higher accessible with the command 'python' (on linux 'python3')
 * [Librosa](https://librosa.github.io/librosa/ "Librosa")
 * [Numpy](http://www.numpy.org/ "Numpy")
